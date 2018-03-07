@@ -1,0 +1,23 @@
+{
+  "name": "ampli",
+  "version": "0.0.0",
+  "description": "HTML to AMP converter",
+  "main": "dist/index.js",
+  "repository": "git@github.com:knamp/ampli.git",
+  "author": "Hans Christian Reinl <info@drublic.de>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "yarn test --watch",
+    "js:production": "yarn js -p",
+    "ts:lint": "tslint **/*.ts",
+    "ts:build": "tsc index.ts --outDir dist/"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
+  }
+}
