@@ -1,11 +1,4 @@
-import {
-  addAmpBoilerplate,
-  addAmpScript,
-  addCharset,
-  convertToDom,
-  setAmpOnHtml,
-  strip,
-} from './lib'
+import addViewport, { addAmpBoilerplate, addAmpScript, addCharset, convertToDom, setAmpOnHtml, strip, } from './lib'
 import IDocument from './lib/interfaces/IDocument'
 
 const format = (formatString: string) => {
@@ -42,11 +35,16 @@ class Main {
     // Set charset
     document = await addCharset(this.document)
 
+    // Add Viewport
+    document = await addViewport(this.document)
+
     // Add AMP script
     document = await addAmpScript(this.document)
 
     // Add AMP Boilerplate
     document = await addAmpBoilerplate(this.document)
+
+    // @TODO Include canonical link
 
     // Export full HTML
     return document.jsdom.serialize()
