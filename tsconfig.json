@@ -1,21 +1,29 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "ES2017",
+    "target": "es5",
     "sourceMap": true,
-    "noEmit": true,
     "alwaysStrict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "strictPropertyInitialization": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
-    "strict": true
+    "strict": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ],
+    "outDir": "dist/"
   },
   "exclude": [
     "./coverage",
-    "./dist",
     "./node_modules"
   ]
 }

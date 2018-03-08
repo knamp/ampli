@@ -12,12 +12,17 @@
     "test:watch": "yarn test --watch",
     "js:production": "yarn js -p",
     "ts:lint": "tslint **/*.ts",
-    "ts:build": "tsc index.ts --outDir dist/"
+    "ts:build": "rm -rf dist/ && tsc -p tsconfig.json"
   },
   "devDependencies": {
+    "@types/es6-promise": "^3.3.0",
+    "@types/node": "^9.4.6",
     "jest": "^22.4.2",
     "tsc": "^1.20150623.0",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "jsdom": "^11.6.2"
   }
 }
