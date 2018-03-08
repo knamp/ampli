@@ -8,15 +8,20 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "start": "concurrently 'yarn serve' 'yarn ts:watch'",
+    "serve": "http-server dist/__tests__/",
     "test": "jest",
     "test:watch": "yarn test --watch",
     "js:production": "yarn js -p",
     "ts:lint": "tslint **/*.ts",
-    "ts:build": "rm -rf dist/ && tsc -p tsconfig.json"
+    "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
+    "ts:watch": "yarn ts:build --watch"
   },
   "devDependencies": {
     "@types/es6-promise": "^3.3.0",
     "@types/node": "^9.4.6",
+    "concurrently": "^3.5.1",
+    "http-server": "^0.11.1",
     "jest": "^22.4.2",
     "tsc": "^1.20150623.0",
     "tslint": "^5.9.1",

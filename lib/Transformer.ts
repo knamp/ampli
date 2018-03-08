@@ -3,6 +3,7 @@ import {
   addAmpScript,
   addCharset,
   addViewport,
+  replaceImg,
   setAmpOnHtml,
 } from './decorators'
 
@@ -56,9 +57,12 @@ export default class Transform {
       // Add AMP script
       addAmpScript,
 
+      // Replace <img> with <amp-img>
+      replaceImg,
+
       // @TODO Include canonical link
       // @TODO Replace external stylesheets
-      // @TODO Replace <img> with <amp-img>
+      // @TODO Replace inline styles
       // @TODO Set width and height for images
     ]
 
