@@ -11,7 +11,7 @@ In your application your can call Ampli like this
 ```javascript
 import Ampli, { IDocument } from 'ampli'
 
-const addtionalDecorators: Function[]? = [(document: IDocument) => document]
+const additionalDecorators: Function[]? = [(document: IDocument) => document]
 const html: string = '' //...
 
 const ampli: Ampli = new Ampli(additionalDecorators)
