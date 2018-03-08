@@ -4,7 +4,8 @@ import { createElement } from '../utis/'
 import strip from '../strip'
 
 const addViewport = (element: HTMLElement): HTMLElement => {
-  element.setAttribute('charset', 'width=device-width, minimum-scale=1, initial-scale=1')
+  element.setAttribute('name', 'viewport')
+  element.setAttribute('content', 'width=device-width, minimum-scale=1, initial-scale=1')
 
   return element
 }
