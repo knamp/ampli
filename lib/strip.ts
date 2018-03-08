@@ -1,9 +1,9 @@
 import IDocument from './interfaces/IDocument'
 
-export default async (
+export default (
   context: IDocument,
   selector: string
-): Promise<IDocument> => {
+): IDocument => {
   const elements = context.document.querySelectorAll(selector)
 
   Array.from(elements).forEach((element: any) => {

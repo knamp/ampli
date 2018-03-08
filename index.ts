@@ -1,7 +1,9 @@
 import {
+  addAmpBoilerplate,
   addAmpScript,
   addCharset,
   convertToDom,
+  setAmpOnHtml,
   strip,
 } from './lib'
 import IDocument from './lib/interfaces/IDocument'
@@ -31,6 +33,9 @@ class Main {
   private async transformDocumentToAmp(): Promise<string> {
     let document: IDocument;
 
+    // Set AMP attribute on HTML element
+    document = await setAmpOnHtml(this.document)
+
     // Strip scripts
     document = await strip(this.document, 'script')
 
@@ -39,6 +44,9 @@ class Main {
 
     // Add AMP script
     document = await addAmpScript(this.document)
+
+    // Add AMP Boilerplate
+    document = await addAmpBoilerplate(this.document)
 
     // Export full HTML
     return document.jsdom.serialize()

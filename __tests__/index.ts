@@ -10,6 +10,7 @@ if (!inputArguments[0]) {
 
 const file: string = inputArguments[0]
 const filePath: string = path.resolve(__dirname, '../../__tests__/data/', file)
+const outputPath: string = path.resolve(__dirname, `amp-${file}`)
 
 fs.readFile(filePath, (err, content: Buffer): Promise<string> => {
   if (err) {
@@ -21,9 +22,10 @@ fs.readFile(filePath, (err, content: Buffer): Promise<string> => {
 
   return amp
     .then((amp) => {
-      console.log(amp)
+      fs.writeFileSync(outputPath, amp)
+      console.log(`Generated File: ${outputPath}`)
 
-      return amp;
+      return amp
     })
     .catch((err) => {
       throw new Error(err)
