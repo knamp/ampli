@@ -12,10 +12,10 @@
     "strict": true,
     "experimentalDecorators": true,
     "lib": [
+      "dom",
       "es5",
       "es6",
-      "es7",
-      "dom"
+      "es7"
     ],
     "types": [
       "node"

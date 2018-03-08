@@ -7,11 +7,12 @@ const convertToDom = (html: string): IDocument => {
     throw new Error('HTML not set')
   }
 
-  const { window } = new JSDOM(html)
+  const jsdom = new JSDOM(html)
 
   return {
-    window,
-    document: window.document
+    jsdom,
+    window: jsdom.window,
+    document: jsdom.window.document
   }
 }
 

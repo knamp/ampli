@@ -1,4 +1,5 @@
 import {
+  addAmpScript,
   addCharset,
   convertToDom,
   strip,
@@ -13,6 +14,7 @@ class Main {
   private html: string = ''
   private amp: string = ''
   private document: IDocument = {
+    jsdom: null,
     window: null,
     document: null,
   }
@@ -35,8 +37,11 @@ class Main {
     // Set charset
     document = await addCharset(this.document)
 
+    // Add AMP script
+    document = await addAmpScript(this.document)
+
     // Export full HTML
-    return document.document.documentElement.outerHTML
+    return document.jsdom.serialize()
   }
 }
 

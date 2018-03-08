@@ -1,10 +1,11 @@
 import IDocument from './interfaces/IDocument'
 
+import config from '../config'
 import { createElement } from './utis/'
 import { strip } from '.'
 
-const addCharset = (element: HTMLElement): HTMLElement => {
-  element.setAttribute('charset', 'utf-8')
+const addScript = (element: HTMLElement): HTMLElement => {
+  element.setAttribute('src', config.ampScript)
 
   return element
 }
@@ -12,9 +13,7 @@ const addCharset = (element: HTMLElement): HTMLElement => {
 export default async (
   context: IDocument
 ): Promise<IDocument> => {
-  const element = createElement(context, "meta", addCharset)
-
-  context = await strip(context, 'meta[charset]')
+  const element = createElement(context, "script", addScript)
 
   context.document.head.appendChild(element)
 
