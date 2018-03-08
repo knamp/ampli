@@ -1,7 +1,7 @@
-import IDocument from './interfaces/IDocument'
+import IDocument from '../interfaces/IDocument'
 
-import config from '../config'
-import { createElement } from './utis/'
+import config from '../../config'
+import { createElement } from '../utis/'
 
 const addScript = (element: HTMLElement): HTMLElement => {
   element.setAttribute('async', '')

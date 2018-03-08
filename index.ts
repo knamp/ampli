@@ -1,4 +1,13 @@
-import addViewport, { addAmpBoilerplate, addAmpScript, addCharset, convertToDom, setAmpOnHtml, strip, } from './lib'
+import {
+  addAmpBoilerplate,
+  addAmpScript,
+  addCharset,
+  addViewport,
+  setAmpOnHtml,
+} from './lib/decorators'
+
+import convertToDom from './lib/convertToDom'
+import strip from './lib/strip'
 import IDocument from './lib/interfaces/IDocument'
 
 const format = (formatString: string) => {
@@ -38,13 +47,16 @@ class Main {
     // Add Viewport
     document = await addViewport(this.document)
 
-    // Add AMP script
-    document = await addAmpScript(this.document)
-
     // Add AMP Boilerplate
     document = await addAmpBoilerplate(this.document)
 
+    // Add AMP script
+    document = await addAmpScript(this.document)
+
     // @TODO Include canonical link
+    // @TODO Replace external stylesheets
+    // @TODO Replace <img> with <amp-img>
+    // @TODO Set width and height for images
 
     // Export full HTML
     return document.jsdom.serialize()

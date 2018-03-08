@@ -1,7 +1,7 @@
-import IDocument from './interfaces/IDocument'
+import IDocument from '../interfaces/IDocument'
 
-import { createElement } from './utis/'
-import { strip } from '.'
+import { createElement } from '../utis/'
+import strip from '../strip'
 
 const addCharset = (element: HTMLElement): HTMLElement => {
   element.setAttribute('charset', 'utf-8')
