@@ -1,5 +1,8 @@
-import { strip } from './lib'
-import convertToDom from './lib/convertToDom'
+import {
+  addCharset,
+  convertToDom,
+  strip,
+} from './lib'
 import IDocument from './lib/interfaces/IDocument'
 
 const format = (formatString: string) => {
@@ -24,7 +27,13 @@ class Main {
   }
 
   private async transformDocumentToAmp(): Promise<string> {
-    let document = await strip(this.document, 'script')
+    let document: IDocument;
+
+    // Strip scripts
+    document = await strip(this.document, 'script')
+
+    // Set charset
+    document = await addCharset(this.document)
 
     // Export full HTML
     return document.document.documentElement.outerHTML

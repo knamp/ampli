@@ -1,6 +1,9 @@
 import IDocument from './interfaces/IDocument'
 
-const strip = async (context: IDocument, selector: string): Promise<IDocument> => {
+export default async (
+  context: IDocument,
+  selector: string
+): Promise<IDocument> => {
   const elements = context.document.querySelectorAll(selector)
 
   Array.from(elements).forEach((element: any) => {
@@ -9,5 +12,3 @@ const strip = async (context: IDocument, selector: string): Promise<IDocument> =
 
   return context
 }
-
-export default strip
