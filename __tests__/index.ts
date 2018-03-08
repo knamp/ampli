@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import Ampli from '../'
+import Ampli, { IDocument } from '../'
 
 const inputArguments: string[] = process.argv.slice(2)
 
@@ -12,22 +12,17 @@ const file: string = inputArguments[0]
 const filePath: string = path.resolve(__dirname, '../../__tests__/data/', file)
 const outputPath: string = path.resolve(__dirname, `amp-${file}`)
 
-fs.readFile(filePath, (err, content: Buffer): Promise<string> => {
+fs.readFile(filePath, async (err, content: Buffer): Promise<string> => {
   if (err) {
     throw new Error(err.message)
   }
 
   const html = content.toString();
-  const amp: Promise<string> = new Ampli().transform(html)
+  const ampli: Ampli = new Ampli()
+  const amp: string = await ampli.transform(html)
+
+  fs.writeFileSync(outputPath, amp)
+  console.log(`Generated File: ${outputPath}`)
 
   return amp
-    .then((amp) => {
-      fs.writeFileSync(outputPath, amp)
-      console.log(`Generated File: ${outputPath}`)
-
-      return amp
-    })
-    .catch((err) => {
-      throw new Error(err)
-    })
 })
