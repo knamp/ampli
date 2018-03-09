@@ -21,6 +21,8 @@ const setDimentions = async (
     height: 0,
   }
 
+  console.info(`Trying to fetch image ${src}`)
+
   if (!src.startsWith('data:') && isAbsoluteUrl(src)) {
     try {
       dimentions = await requestImageSize(image.src)

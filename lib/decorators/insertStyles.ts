@@ -63,7 +63,7 @@ const filterRules = (rules: any[]): any[] => {
 
     if (rule.declarations) {
       rule.declarations = rule.declarations.map((declaration) => {
-        if (declaration.value.indexOf('!important') > -1) {
+        if (declaration.value && declaration.value.indexOf('!important') > -1) {
           declaration.value = declaration.value.replace('!important', '')
         }
 
