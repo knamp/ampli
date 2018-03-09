@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "clean-css": "^4.1.11",
+    "is-absolute-url": "^2.1.0",
     "jsdom": "^11.6.2",
     "request-image-size": "^2.1.0",
     "request-promise-native": "^1.0.5"

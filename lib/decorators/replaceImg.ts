@@ -1,4 +1,5 @@
 import * as requestImageSize from 'request-image-size'
+import * as isAbsoluteUrl from 'is-absolute-url'
 
 import IDocument from '../interfaces/IDocument'
 import IImageDimentions from '../interfaces/IImageDimentions'
@@ -14,17 +15,18 @@ const setDimentions = async (
   element: HTMLElement,
   image: HTMLImageElement
 ): Promise<HTMLElement> => {
-  let dimentions: IImageDimentions
+  const src: string = image.src
+  let dimentions: IImageDimentions = {
+    width: 0,
+    height: 0,
+  }
 
-  try {
-    dimentions = await requestImageSize(image.src)
-  } catch (error) {
-    dimentions = {
-      width: 0,
-      height: 0,
+  if (!src.startsWith('data:') && isAbsoluteUrl(src)) {
+    try {
+      dimentions = await requestImageSize(image.src)
+    } catch (error) {
+      console.error(`Cannot get file ${image.src}`, error)
     }
-
-    console.error(`Cannot get file ${image.src}`, error)
   }
 
   element.setAttribute('width', `${dimentions.width}`)
