@@ -15,7 +15,7 @@ export default async (
 ): Promise<IDocument> => {
   const element = await createElement(context, "meta", addViewport)
 
-  context = strip(context, 'meta[viewport]')
+  context = strip(context, 'meta[name="viewport"]')
 
   context.document.head.appendChild(element)
 

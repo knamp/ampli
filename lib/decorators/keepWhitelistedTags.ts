@@ -22,7 +22,12 @@ const filterChildren = (parent: Node): Node[] => {
       return
     }
 
+    const inlineStyle: string | null = childElement.getAttribute('style')
     const tagName: string = childElement.tagName.toLowerCase()
+
+    if (inlineStyle) {
+      childElement.removeAttribute('style')
+    }
 
     if (whitelist.indexOf(tagName) === -1) {
       childElement.remove()
