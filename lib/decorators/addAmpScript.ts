@@ -10,10 +10,10 @@ const addScript = (element: HTMLElement): HTMLElement => {
   return element
 }
 
-export default (
+export default async (
   context: IDocument
-): IDocument => {
-  const element = createElement(context, "script", addScript)
+): Promise<IDocument> => {
+  const element = await createElement(context, "script", addScript)
 
   context.document.head.appendChild(element)
 

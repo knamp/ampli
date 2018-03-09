@@ -10,10 +10,10 @@ const addViewport = (element: HTMLElement): HTMLElement => {
   return element
 }
 
-export default (
+export default async (
   context: IDocument
-): IDocument => {
-  const element = createElement(context, "meta", addViewport)
+): Promise<IDocument> => {
+  const element = await createElement(context, "meta", addViewport)
 
   context = strip(context, 'meta[viewport]')
 

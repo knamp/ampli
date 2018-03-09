@@ -9,10 +9,10 @@ const addCharset = (element: HTMLElement): HTMLElement => {
   return element
 }
 
-export default (
+export default async (
   context: IDocument
-): IDocument => {
-  const element = createElement(context, "meta", addCharset)
+): Promise<IDocument> => {
+  const element = await createElement(context, "meta", addCharset)
 
   context = strip(context, 'meta[charset]')
 

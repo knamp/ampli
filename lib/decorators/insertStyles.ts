@@ -48,7 +48,7 @@ export default async (
 
   context = strip(context, 'style, link')
 
-  const element: HTMLElement = createElement(context, 'style', (element) => {
+  const element: HTMLElement = await createElement(context, 'style', (element) => {
     element.setAttribute('amp-custom', '')
     element.innerHTML = minifiedStyles
 

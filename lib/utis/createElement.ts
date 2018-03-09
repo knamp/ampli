@@ -1,13 +1,13 @@
 import IDocument from '../interfaces/IDocument'
 
-export default (
+export default async (
   { document }: IDocument,
   elementName: string,
   transform: Function = element => element
-): HTMLElement => {
+): Promise<HTMLElement> => {
   const fragment = document.createDocumentFragment()
   let element = document.createElement(elementName)
-  element = transform(element)
+  element = await transform(element)
 
   fragment.appendChild(element)
 

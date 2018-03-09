@@ -68,11 +68,10 @@ export default class Transformer {
       // Add AMP script
       addAmpScript,
 
-      // Replace <img> with <amp-img>
+      // Replace <img> with <amp-img>, set width and height for images
       replaceImg,
 
       // @TODO Include canonical link
-      // @TODO Set width and height for images
 
       keepWhitelistedTags,
     ]
