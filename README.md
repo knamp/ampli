@@ -20,6 +20,10 @@ const amp: string = await ampli.transform(html)
 console.log(amp)
 ```
 
+## Constrains
+
+You must provide fully qualified URLs for images, stylesheets.
+
 ## License
 
 This project is under MIT license.

@@ -13,9 +13,7 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es5",
-      "es6",
-      "es7"
+      "esnext"
     ],
     "types": [
       "node"

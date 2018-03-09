@@ -3,8 +3,9 @@ import {
   addAmpScript,
   addCharset,
   addViewport,
-  replaceImg,
+  insertStyles,
   keepWhitelistedTags,
+  replaceImg,
   setAmpOnHtml,
 } from './decorators'
 
@@ -12,7 +13,7 @@ import convertToDom from './convertToDom'
 import strip from './strip'
 import IDocument from './interfaces/IDocument'
 
-export default class Transform {
+export default class Transformer {
   private html: string = ''
   private additionalDecorators: Function[] | undefined
   private additionalTags: string[] | undefined
@@ -43,6 +44,7 @@ export default class Transform {
   private async transformDocumentToAmp(): Promise<string> {
     let document: IDocument = this.document;
 
+    // Order matters
     const decorators = [
 
       // Set AMP attribute on HTML element
@@ -57,6 +59,9 @@ export default class Transform {
       // Add Viewport
       addViewport,
 
+      // Replace external stylesheets, replace inline styles
+      insertStyles,
+
       // Add AMP Boilerplate
       addAmpBoilerplate,
 
@@ -67,23 +72,21 @@ export default class Transform {
       replaceImg,
 
       // @TODO Include canonical link
-      // @TODO Replace external stylesheets
-      // @TODO Replace inline styles
       // @TODO Set width and height for images
 
       keepWhitelistedTags,
     ]
 
     // Apply decorators
-    decorators.forEach(async (decorator: Function) => {
+    for (const decorator of decorators) {
       document = await decorator(document)
-    })
+    }
 
     // Additional decorators
     if (this.additionalDecorators && this.additionalDecorators.constructor === Array) {
-      this.additionalDecorators.forEach(async (decorator: Function) => {
+      for (const decorator of this.additionalDecorators) {
         document = await decorator(document)
-      })
+      }
     }
 
     // Export full HTML
