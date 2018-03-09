@@ -7,7 +7,12 @@ const convertToDom = (html: string): IDocument => {
     throw new Error('HTML not set')
   }
 
-  const jsdom = new JSDOM(html)
+  let jsdom: JSDOM = new JSDOM(html)
+
+  if (jsdom.window.document.doctype === null) {
+    html = `<!DOCTYPE html>${html}`
+    jsdom = new JSDOM(html)
+  }
 
   return {
     jsdom,
