@@ -58,3 +58,4 @@ typings/
 .env
 
 /dist
+/__tests__/data/.*.html
