@@ -1,5 +1,4 @@
 import IDocument from '../interfaces/IDocument'
-import IElementAttribute from '../interfaces/IElementAttribute'
 import { createElement } from '../utis'
 
 const addAllAttributes = (

@@ -4,6 +4,7 @@ import {
   addCharset,
   addViewport,
   replaceImg,
+  keepWhitelistedTags,
   setAmpOnHtml,
 } from './decorators'
 
@@ -14,14 +15,19 @@ import IDocument from './interfaces/IDocument'
 export default class Transform {
   private html: string = ''
   private additionalDecorators: Function[] | undefined
+  private additionalTags: string[] | undefined
   private document: IDocument = {
     jsdom: null,
     window: null,
     document: null,
   }
 
-  constructor(additionalDecorators?: Function[]) {
+  constructor(
+    additionalDecorators?: Function[],
+    additionalTags?: string[]
+  ) {
     this.additionalDecorators = additionalDecorators
+    this.additionalTags = additionalTags
   }
 
   public async transform(
@@ -64,6 +70,8 @@ export default class Transform {
       // @TODO Replace external stylesheets
       // @TODO Replace inline styles
       // @TODO Set width and height for images
+
+      keepWhitelistedTags,
     ]
 
     // Apply decorators
