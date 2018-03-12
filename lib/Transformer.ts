@@ -5,6 +5,8 @@ import {
   addViewport,
   insertStyles,
   keepWhitelistedTags,
+  removeBlacklistedAttributes,
+  replaceElement,
   replaceImg,
   setAmpOnHtml,
 } from './decorators'
@@ -12,6 +14,7 @@ import {
 import convertToDom from './convertToDom'
 import strip from './strip'
 import IDocument from './interfaces/IDocument'
+import { walkTheTree } from './utis'
 
 export default class Transformer {
   private html: string = ''
@@ -51,7 +54,7 @@ export default class Transformer {
       setAmpOnHtml,
 
       // Strip scripts
-      (document) => strip(document, 'script'),
+      (document: IDocument): IDocument => strip(document, 'script'),
 
       // Set charset
       addCharset,
@@ -71,9 +74,21 @@ export default class Transformer {
       // Replace <img> with <amp-img>, set width and height for images
       replaceImg,
 
+      // Replace <iframe> with <amp-iframe>
+      (document: IDocument): Promise<IDocument> => (
+        replaceElement(document, 'iframe', 'amp-iframe')
+      ),
+
       // @TODO Include canonical link
 
-      keepWhitelistedTags,
+      (context: IDocument) => {
+        walkTheTree(context.document, (element: HTMLElement) => {
+          keepWhitelistedTags(element);
+          removeBlacklistedAttributes(element);
+        })
+
+        return context
+      }
     ]
 
     // Apply decorators

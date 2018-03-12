@@ -4,6 +4,7 @@ import * as isAbsoluteUrl from 'is-absolute-url'
 import IDocument from '../interfaces/IDocument'
 import IImageDimentions from '../interfaces/IImageDimentions'
 import { createElement } from '../utis'
+import { replaceElement } from '.'
 
 const setLayout = (element: HTMLElement): HTMLElement => {
   element.setAttribute('layout', 'responsive')
@@ -38,42 +39,21 @@ const setDimentions = async (
   return element
 }
 
-const addAllAttributes = async (
-  element: HTMLElement,
-  image: HTMLImageElement
-): Promise<HTMLElement> => {
-  const attributes: NamedNodeMap = image.attributes
-
-  element = setLayout(element)
-  element = await setDimentions(element, image)
-
-  Array.from(attributes).forEach((attribute) => {
-    element.setAttribute(attribute.nodeName, attribute.nodeValue || '')
-  })
-
-  return element
-}
-
 export default async (
   context: IDocument
 ): Promise<IDocument> => {
-  const elements: NodeListOf<HTMLImageElement> =
-    context.document.querySelectorAll('img')
-  const elementsArray = Array.from(elements)
+  return replaceElement(
+    context,
+    'img',
+    'amp-img',
+    async (
+      element: HTMLElement,
+      initialElement: HTMLImageElement
+    ): Promise<HTMLElement> => {
+      element = setLayout(element)
+      element = await setDimentions(element, initialElement)
 
-  for (const image of elementsArray) {
-    const element: HTMLElement = await createElement(
-      context,
-      'amp-img',
-      async element => await addAllAttributes(element, image)
-    )
-
-    if (image.parentNode) {
-      image.parentNode.insertBefore(element, image)
+      return element
     }
-
-    image.remove()
-  }
-
-  return context
+  )
 }
