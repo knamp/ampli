@@ -12,4 +12,7 @@ export default [{
 }, {
   selector: 'meta',
   attributes: ['http-equiv'],
+}, {
+  selector: 'a',
+  attributes: ['target']
 }]
