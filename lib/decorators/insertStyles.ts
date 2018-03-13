@@ -11,12 +11,16 @@ export default async (
 
   context = strip(context, "style, link");
 
-  const element: HTMLElement = await createElement(context, "style", (element) => {
-    element.setAttribute("amp-custom", "");
-    element.innerHTML = styles;
+  const element: HTMLElement = await createElement(
+    context,
+    "style",
+    (elementToTransform: HTMLElement): HTMLElement => {
+      elementToTransform.setAttribute("amp-custom", "");
+      elementToTransform.innerHTML = styles;
 
-    return element;
-  });
+      return elementToTransform;
+    },
+  );
 
   context.document.head.appendChild(element);
 

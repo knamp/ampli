@@ -19,8 +19,8 @@ const setDimentions = async (
 ): Promise<HTMLElement> => {
   const src: string = image.src;
   let dimentions: ImageDimentionsInterface = {
-    width: 0,
     height: 0,
+    width: 0,
   };
 
   Logger.info(`Trying to fetch image ${src}`);
@@ -49,10 +49,10 @@ export default async (
     "amp-img",
     async (
       element: HTMLElement,
-      initialElement: HTMLImageElement,
+      initialElement: HTMLElement,
     ): Promise<HTMLElement> => {
       element = setLayout(element);
-      element = await setDimentions(element, initialElement);
+      element = await setDimentions(element, initialElement as HTMLImageElement);
 
       return element;
     },

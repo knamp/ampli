@@ -8,7 +8,7 @@ export default async (
   context: ContextInterface,
   elementName: string,
   newElementName: string,
-  getAddtionalAttributes?: Function,
+  getAddtionalAttributes?: (element: HTMLElement, initialElement: HTMLElement) => Promise<HTMLElement>,
 ): Promise<ContextInterface> => {
   const elements: NodeListOf<HTMLImageElement> =
     context.document.querySelectorAll(elementName);
@@ -18,14 +18,14 @@ export default async (
     const element: HTMLElement = await createElement(
       context,
       newElementName,
-      async (element) => {
-        element = await addAllAttributes(element, initialElement);
+      async (elementToTransform: HTMLElement) => {
+        elementToTransform = await addAllAttributes(elementToTransform, initialElement);
 
         if (typeof getAddtionalAttributes === "function") {
-          element = await getAddtionalAttributes(element, initialElement);
+          elementToTransform = await getAddtionalAttributes(elementToTransform, initialElement);
         }
 
-        return element;
+        return elementToTransform;
       },
     );
 

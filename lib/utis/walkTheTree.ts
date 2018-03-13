@@ -1,10 +1,10 @@
-const walkTheTree = (parent: Node, callback: Function) => {
+const walkTheTree = (parent: Node, callback: (child: HTMLElement) => HTMLElement) => {
   const children = filterChildren(parent, callback);
 
   children.forEach((child) => walkTheTree(child, callback));
 };
 
-const filterChildren = (parent: Node, callback: Function): Node[] => {
+const filterChildren = (parent: Node, callback: (child: HTMLElement) => HTMLElement): Node[] => {
   const childNodes = parent.childNodes;
   const children = Array.from(childNodes);
 

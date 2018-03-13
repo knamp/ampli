@@ -21,6 +21,19 @@ export default class ConvertStyles {
     });
   }
 
+  public async get(): Promise<string> {
+    const styles: string = await this.getInlineStyles();
+    const filteredStyles: string = this.filterStyles(styles);
+    const html: string = this.context.jsdom.serialize();
+    const stylesInUse: StaticStylesOutput = StaticStyles(html, filteredStyles);
+    const minifiedStyles = this.cleanCss.minify(stylesInUse.css);
+
+    Logger.info("Cleaned styles from unused", stylesInUse.stats);
+    Logger.info("Minified styles", minifiedStyles.stats);
+
+    return minifiedStyles.styles;
+  }
+
   private getInlineStyles = async () => {
     const stylesheetContent: string[] = await this.getStylesheets();
     const styleElementContent: string[] = await getElementContent(this.context, "style");
@@ -89,18 +102,5 @@ export default class ConvertStyles {
     ast.stylesheet.rules = this.filterRules(ast.stylesheet.rules);
 
     return Css.stringify(ast);
-  }
-
-  public async get(): Promise<string> {
-    const styles: string = await this.getInlineStyles();
-    const filteredStyles: string = this.filterStyles(styles);
-    const html: string = this.context.jsdom.serialize();
-    const stylesInUse: StaticStylesOutput = StaticStyles(html, filteredStyles);
-    const minifiedStyles = this.cleanCss.minify(stylesInUse.css);
-
-    Logger.info("Cleaned styles from unused", stylesInUse.stats);
-    Logger.info("Minified styles", minifiedStyles.stats);
-
-    return minifiedStyles.styles;
   }
 }

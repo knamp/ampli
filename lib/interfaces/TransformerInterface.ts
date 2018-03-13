@@ -4,6 +4,6 @@ import OptionsInterface from "./OptionsInterface";
 export default interface TransformerInterface {
   html: string;
   context: ContextInterface;
-  additionalDecorators?: Function[] | undefined;
+  additionalDecorators?: Array<() => void> | undefined;
   options?: OptionsInterface;
 }
