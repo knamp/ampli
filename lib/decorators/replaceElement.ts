@@ -1,18 +1,8 @@
 import ContextInterface from '../interfaces/ContextInterface'
-import { createElement } from '../utis'
-
-const addAllAttributes = (
-  element: HTMLElement,
-  initialElement: HTMLElement
-): HTMLElement => {
-  const attributes: NamedNodeMap = initialElement.attributes
-
-  Array.from(attributes).forEach((attribute) => {
-    element.setAttribute(attribute.nodeName, attribute.nodeValue || '')
-  })
-
-  return element
-}
+import {
+  addAllAttributes,
+  createElement
+} from '../utis'
 
 export default async (
   context: ContextInterface,

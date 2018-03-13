@@ -8,6 +8,7 @@ import {
   removeBlacklistedAttributes,
   replaceElement,
   replaceImg,
+  replacePicture,
   setAmpOnHtml,
 } from './decorators'
 
@@ -60,6 +61,9 @@ export default class Transformer implements TransformerInterface {
 
       // Add Viewport
       addViewport,
+
+      // Replace <picture> with <img>
+      replacePicture,
 
       // Replace <img> with <amp-img>, set width and height for images
       replaceImg,
