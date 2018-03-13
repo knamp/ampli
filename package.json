@@ -24,6 +24,7 @@
     "css": "^2.2.1",
     "is-absolute-url": "^2.1.0",
     "jsdom": "^11.6.2",
+    "log": "^1.4.0",
     "request": "^2.85.0",
     "request-image-size": "^2.1.0",
     "request-promise-native": "^1.0.5",

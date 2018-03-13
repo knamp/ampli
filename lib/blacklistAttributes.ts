@@ -2,17 +2,17 @@
  * A blacklist of attributes on elements
  */
 export default [{
-  selector: "*",
   attributes: [
     /^bg.*/,
     /^on.*/,
     /^margin.*/,
     "style",
   ],
+  selector: "*",
 }, {
-  selector: "meta",
   attributes: ["http-equiv"],
+  selector: "meta",
 }, {
-  selector: "a",
   attributes: ["target"],
+  selector: "a",
 }];

@@ -1,8 +1,10 @@
 import * as isAbsoluteUrl from "is-absolute-url";
 import * as request from "request-promise-native";
 
+import Logger from "../Logger";
+
 export default async (href: string): Promise<string> => {
-  console.info(`Trying to fetch image ${href}`);
+  Logger.info(`Trying to fetch image ${href}`);
 
   if (!href.startsWith("data:") && isAbsoluteUrl(href)) {
     try {
@@ -10,7 +12,7 @@ export default async (href: string): Promise<string> => {
 
       return response.toString();
     } catch (err) {
-      console.error(err);
+      Logger.error(err);
     }
   }
 

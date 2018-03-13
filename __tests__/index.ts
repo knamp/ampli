@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as Log from "log";
 import * as path from "path";
 import Ampli, { ContextInterface } from "../";
 
@@ -11,6 +12,7 @@ if (!inputArguments[0]) {
 const file: string = inputArguments[0];
 const filePath: string = path.resolve(__dirname, "../../__tests__/data/", file);
 const outputPath: string = path.resolve(__dirname, `amp-${file}`);
+const log = new Log("info");
 
 fs.readFile(filePath, async (err, content: Buffer): Promise<string> => {
   if (err) {
@@ -22,7 +24,7 @@ fs.readFile(filePath, async (err, content: Buffer): Promise<string> => {
   const amp: string = await ampli.transform(html);
 
   fs.writeFileSync(outputPath, amp);
-  console.log(`Generated File: ${outputPath}`);
+  log.info(`Generated File: ${outputPath}`);
 
   return amp;
 });

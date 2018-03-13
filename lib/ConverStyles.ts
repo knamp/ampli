@@ -3,6 +3,7 @@ import * as Css from "css";
 import StaticStyles, { Output as StaticStylesOutput } from "static-styles";
 
 import ContextInterface from "./interfaces/ContextInterface";
+import Logger from "./Logger";
 
 import {
   getElementContent,
@@ -46,7 +47,7 @@ export default class ConvertStyles {
     try {
       return await Promise.all(promises);
     } catch (err) {
-      console.error(err);
+      Logger.error(err);
     }
 
     return [];
@@ -97,8 +98,8 @@ export default class ConvertStyles {
     const stylesInUse: StaticStylesOutput = StaticStyles(html, filteredStyles);
     const minifiedStyles = this.cleanCss.minify(stylesInUse.css);
 
-    console.log("Cleaned styles from unused", stylesInUse.stats);
-    console.log("Minified styles", minifiedStyles.stats);
+    Logger.info("Cleaned styles from unused", stylesInUse.stats);
+    Logger.info("Minified styles", minifiedStyles.stats);
 
     return minifiedStyles.styles;
   }

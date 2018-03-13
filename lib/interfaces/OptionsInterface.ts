@@ -1,8 +1,4 @@
-interface LoggerInterface {
-  info: () => void;
-  error: () => void;
-  debug: () => void;
-}
+import LoggerInterface from "./LoggerInterface";
 
 export default interface OptionsInterface {
   logger?: LoggerInterface;

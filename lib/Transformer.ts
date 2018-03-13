@@ -17,6 +17,7 @@ import OptionsInterface from "./interfaces/OptionsInterface";
 import TransformerInterface from "./interfaces/TransformerInterface";
 
 import convertToDom from "./convertToDom";
+import { set as setLogger } from "./Logger";
 import strip from "./strip";
 import { walkTheTree } from "./utis";
 
@@ -31,7 +32,11 @@ export default class Transformer implements TransformerInterface {
   constructor(
     public options?: OptionsInterface,
     public additionalDecorators?: Array<(context: ContextInterface) => ContextInterface>,
-  ) {}
+  ) {
+    if (options && options.logger) {
+      setLogger(options.logger);
+    }
+  }
 
   public async transform(
     html: string,

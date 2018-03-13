@@ -4,6 +4,7 @@ import * as requestImageSize from "request-image-size";
 import { replaceElement } from ".";
 import ContextInterface from "../interfaces/ContextInterface";
 import ImageDimentionsInterface from "../interfaces/ImageDimentionsInterface";
+import Logger from "../Logger";
 import { createElement } from "../utis";
 
 const setLayout = (element: HTMLElement): HTMLElement => {
@@ -22,13 +23,13 @@ const setDimentions = async (
     height: 0,
   };
 
-  console.info(`Trying to fetch image ${src}`);
+  Logger.info(`Trying to fetch image ${src}`);
 
   if (!src.startsWith("data:") && isAbsoluteUrl(src)) {
     try {
       dimentions = await requestImageSize(image.src);
     } catch (error) {
-      console.error(`Cannot get file ${image.src}`, error);
+      Logger.error(`Cannot get file ${image.src}`, error);
     }
   }
 

@@ -15,9 +15,9 @@ const convertToDom = (html: string): ContextInterface => {
   }
 
   return {
+    document: jsdom.window.document,
     jsdom,
     window: jsdom.window,
-    document: jsdom.window.document,
   };
 };
 
