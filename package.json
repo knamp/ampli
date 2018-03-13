@@ -12,7 +12,6 @@
     "serve": "http-server dist/__tests__/",
     "test": "jest",
     "test:watch": "yarn test --watch",
-    "js:production": "yarn js -p",
     "ts:lint": "tslint -c tslint.json 'lib/**/*.ts'",
     "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
     "ts:watch": "yarn ts:build --watch",
