@@ -1,3 +1,3 @@
 export default {
-  ampScript: 'https://cdn.ampproject.org/v0.js'
-}
+  ampScript: "https://cdn.ampproject.org/v0.js",
+};
