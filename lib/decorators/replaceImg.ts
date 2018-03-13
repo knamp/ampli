@@ -2,7 +2,7 @@ import * as requestImageSize from 'request-image-size'
 import * as isAbsoluteUrl from 'is-absolute-url'
 
 import ContextInterface from '../interfaces/ContextInterface'
-import IImageDimentions from '../interfaces/IImageDimentions'
+import ImageDimentionsInterface from '../interfaces/ImageDimentionsInterface'
 import { createElement } from '../utis'
 import { replaceElement } from '.'
 
@@ -17,7 +17,7 @@ const setDimentions = async (
   image: HTMLImageElement
 ): Promise<HTMLElement> => {
   const src: string = image.src
-  let dimentions: IImageDimentions = {
+  let dimentions: ImageDimentionsInterface = {
     width: 0,
     height: 0,
   }

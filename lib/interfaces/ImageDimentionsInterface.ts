@@ -1,4 +1,4 @@
-export default interface IImageDimentions {
+export default interface ImageDimentionsInterface {
   width: number;
   height: number;
   type?: number;
