@@ -1,7 +1,7 @@
-import ContextInterface from '../interfaces/ContextInterface'
+import ContextInterface from "../interfaces/ContextInterface";
 
 export default (context: ContextInterface): ContextInterface => {
-  context.document.documentElement.setAttribute('amp', '')
+  context.document.documentElement.setAttribute("amp", "");
 
-  return context
-}
+  return context;
+};

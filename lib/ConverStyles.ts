@@ -1,105 +1,105 @@
-import * as Css from 'css'
-import * as CleanCSS from 'clean-css'
-import StaticStyles, { Output as StaticStylesOutput } from 'static-styles'
+import * as CleanCSS from "clean-css";
+import * as Css from "css";
+import StaticStyles, { Output as StaticStylesOutput } from "static-styles";
 
-import ContextInterface from './interfaces/ContextInterface'
+import ContextInterface from "./interfaces/ContextInterface";
 
 import {
-  loadFile,
   getElementContent,
-} from './utis/'
+  loadFile,
+} from "./utis/";
 
 export default class ConvertStyles {
-  private cleanCss: CleanCSS
-  private context: ContextInterface
+  private cleanCss: CleanCSS;
+  private context: ContextInterface;
 
   constructor(context: ContextInterface) {
-    this.context = context
+    this.context = context;
     this.cleanCss = new CleanCSS({
-      level: 2
-    })
+      level: 2,
+    });
   }
 
   private getInlineStyles = async () => {
-    const stylesheetContent: string[] = await this.getStylesheets()
-    const styleElementContent: string[] = await getElementContent(this.context, 'style')
+    const stylesheetContent: string[] = await this.getStylesheets();
+    const styleElementContent: string[] = await getElementContent(this.context, "style");
 
-    return stylesheetContent.concat(styleElementContent).join(' ')
+    return stylesheetContent.concat(styleElementContent).join(" ");
   }
 
   private getStylesheets = async (): Promise<string[]> => {
-    const { document } = this.context
+    const { document } = this.context;
     const stylesheetElements: NodeListOf<HTMLElement> =
-      document.querySelectorAll('link[rel="stylesheet"]')
+      document.querySelectorAll('link[rel="stylesheet"]');
     const stylesheets: HTMLElement[] = Array.from(stylesheetElements);
-    const promises: Promise<string>[] = stylesheets
+    const promises: Array<Promise<string>> = stylesheets
       .map((stylesheet: HTMLElement) => {
-        const href: string | null = stylesheet.getAttribute('href')
+        const href: string | null = stylesheet.getAttribute("href");
 
         if (!href) {
-          return Promise.resolve('')
+          return Promise.resolve("");
         }
 
-        return loadFile(href)
-      })
+        return loadFile(href);
+      });
 
     try {
       return await Promise.all(promises);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
 
-    return []
+    return [];
   }
 
   private filterRules = (rules: any[]): any[] => {
-    return rules.map(rule => {
+    return rules.map((rule) => {
 
       // Remove @page, remove @media print
-      if (['page'].indexOf(rule.type) > -1 || ['print'].indexOf(rule.media) > -1) {
-        rule.rules = []
+      if (["page"].indexOf(rule.type) > -1 || ["print"].indexOf(rule.media) > -1) {
+        rule.rules = [];
 
-        return rule
+        return rule;
       }
 
       if (rule.rules) {
-        rule.rules = this.filterRules(rule.rules)
+        rule.rules = this.filterRules(rule.rules);
 
-        return rule
+        return rule;
       }
 
       if (rule.declarations) {
         rule.declarations = rule.declarations.map((declaration) => {
-          if (declaration.value && declaration.value.indexOf('!important') > -1) {
-            declaration.value = declaration.value.replace('!important', '')
+          if (declaration.value && declaration.value.indexOf("!important") > -1) {
+            declaration.value = declaration.value.replace("!important", "");
           }
 
-          return declaration
-        })
+          return declaration;
+        });
       }
 
-      return rule
-    })
+      return rule;
+    });
   }
 
   private filterStyles(styles: string): string {
-    const ast = Css.parse(styles)
+    const ast = Css.parse(styles);
 
-    ast.stylesheet.rules = this.filterRules(ast.stylesheet.rules)
+    ast.stylesheet.rules = this.filterRules(ast.stylesheet.rules);
 
-    return Css.stringify(ast)
+    return Css.stringify(ast);
   }
 
   public async get(): Promise<string> {
-    const styles: string = await this.getInlineStyles()
-    const filteredStyles: string = this.filterStyles(styles)
-    const html: string = this.context.jsdom.serialize()
-    const stylesInUse: StaticStylesOutput = StaticStyles(html, filteredStyles)
+    const styles: string = await this.getInlineStyles();
+    const filteredStyles: string = this.filterStyles(styles);
+    const html: string = this.context.jsdom.serialize();
+    const stylesInUse: StaticStylesOutput = StaticStyles(html, filteredStyles);
     const minifiedStyles = this.cleanCss.minify(stylesInUse.css);
 
-    console.log('Cleaned styles from unused', stylesInUse.stats)
-    console.log('Minified styles', minifiedStyles.stats)
+    console.log("Cleaned styles from unused", stylesInUse.stats);
+    console.log("Minified styles", minifiedStyles.stats);
 
-    return minifiedStyles.styles
+    return minifiedStyles.styles;
   }
 }

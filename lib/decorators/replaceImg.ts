@@ -1,59 +1,59 @@
-import * as requestImageSize from 'request-image-size'
-import * as isAbsoluteUrl from 'is-absolute-url'
+import * as isAbsoluteUrl from "is-absolute-url";
+import * as requestImageSize from "request-image-size";
 
-import ContextInterface from '../interfaces/ContextInterface'
-import ImageDimentionsInterface from '../interfaces/ImageDimentionsInterface'
-import { createElement } from '../utis'
-import { replaceElement } from '.'
+import { replaceElement } from ".";
+import ContextInterface from "../interfaces/ContextInterface";
+import ImageDimentionsInterface from "../interfaces/ImageDimentionsInterface";
+import { createElement } from "../utis";
 
 const setLayout = (element: HTMLElement): HTMLElement => {
-  element.setAttribute('layout', 'responsive')
+  element.setAttribute("layout", "responsive");
 
-  return element
-}
+  return element;
+};
 
 const setDimentions = async (
   element: HTMLElement,
-  image: HTMLImageElement
+  image: HTMLImageElement,
 ): Promise<HTMLElement> => {
-  const src: string = image.src
+  const src: string = image.src;
   let dimentions: ImageDimentionsInterface = {
     width: 0,
     height: 0,
-  }
+  };
 
-  console.info(`Trying to fetch image ${src}`)
+  console.info(`Trying to fetch image ${src}`);
 
-  if (!src.startsWith('data:') && isAbsoluteUrl(src)) {
+  if (!src.startsWith("data:") && isAbsoluteUrl(src)) {
     try {
-      dimentions = await requestImageSize(image.src)
+      dimentions = await requestImageSize(image.src);
     } catch (error) {
-      console.error(`Cannot get file ${image.src}`, error)
+      console.error(`Cannot get file ${image.src}`, error);
     }
   }
 
-  element.setAttribute('width', `${dimentions.width}`)
-  element.setAttribute('height', `${dimentions.height}`)
-  element.setAttribute('layout', 'responsive')
+  element.setAttribute("width", `${dimentions.width}`);
+  element.setAttribute("height", `${dimentions.height}`);
+  element.setAttribute("layout", "responsive");
 
-  return element
-}
+  return element;
+};
 
 export default async (
-  context: ContextInterface
+  context: ContextInterface,
 ): Promise<ContextInterface> => {
   return replaceElement(
     context,
-    'img',
-    'amp-img',
+    "img",
+    "amp-img",
     async (
       element: HTMLElement,
-      initialElement: HTMLImageElement
+      initialElement: HTMLImageElement,
     ): Promise<HTMLElement> => {
-      element = setLayout(element)
-      element = await setDimentions(element, initialElement)
+      element = setLayout(element);
+      element = await setDimentions(element, initialElement);
 
-      return element
-    }
-  )
-}
+      return element;
+    },
+  );
+};

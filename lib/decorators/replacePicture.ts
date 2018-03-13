@@ -1,21 +1,21 @@
-import ContextInterface from '../interfaces/ContextInterface'
-import { addAllAttributes } from '../utis'
-import { replaceElement } from '.'
+import { replaceElement } from ".";
+import ContextInterface from "../interfaces/ContextInterface";
+import { addAllAttributes } from "../utis";
 
 export default async (
-  context: ContextInterface
+  context: ContextInterface,
 ): Promise<ContextInterface> => {
   return replaceElement(
     context,
-    'picture',
-    'img',
+    "picture",
+    "img",
     async (
       element: HTMLElement,
-      initialElement: HTMLImageElement
+      initialElement: HTMLImageElement,
     ): Promise<HTMLElement> => {
-      const img = <HTMLElement> initialElement.querySelector('img')
+      const img = initialElement.querySelector("img") as HTMLElement;
 
-      return addAllAttributes(element, img)
-    }
-  )
-}
+      return addAllAttributes(element, img);
+    },
+  );
+};

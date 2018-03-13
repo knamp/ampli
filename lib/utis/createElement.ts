@@ -1,15 +1,15 @@
-import ContextInterface from '../interfaces/ContextInterface'
+import ContextInterface from "../interfaces/ContextInterface";
 
 export default async (
   { document }: ContextInterface,
   elementName: string,
-  transform: Function = element => element
+  transform: Function = (element) => element,
 ): Promise<HTMLElement> => {
-  const fragment = document.createDocumentFragment()
-  let element = document.createElement(elementName)
-  element = await transform(element)
+  const fragment = document.createDocumentFragment();
+  let element = document.createElement(elementName);
+  element = await transform(element);
 
-  fragment.appendChild(element)
+  fragment.appendChild(element);
 
-  return fragment
-}
+  return fragment;
+};

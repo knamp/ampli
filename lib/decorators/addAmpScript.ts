@@ -1,21 +1,21 @@
-import ContextInterface from '../interfaces/ContextInterface'
+import ContextInterface from "../interfaces/ContextInterface";
 
-import config from '../../config'
-import { createElement } from '../utis/'
+import config from "../../config";
+import { createElement } from "../utis/";
 
 const addScript = (element: HTMLElement): HTMLElement => {
-  element.setAttribute('async', '')
-  element.setAttribute('src', config.ampScript)
+  element.setAttribute("async", "");
+  element.setAttribute("src", config.ampScript);
 
-  return element
-}
+  return element;
+};
 
 export default async (
-  context: ContextInterface
+  context: ContextInterface,
 ): Promise<ContextInterface> => {
-  const element = await createElement(context, "script", addScript)
+  const element = await createElement(context, "script", addScript);
 
-  context.document.head.appendChild(element)
+  context.document.head.appendChild(element);
 
-  return context
-}
+  return context;
+};

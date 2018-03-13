@@ -1,15 +1,15 @@
-import whitelist from '../whitelist'
+import whitelist from "../whitelist";
 
 export default (
-  element: HTMLElement
+  element: HTMLElement,
 ) => {
   if (!element.tagName) {
-    return
+    return;
   }
 
-  const tagName: string = element.tagName.toLowerCase()
+  const tagName: string = element.tagName.toLowerCase();
 
   if (whitelist.indexOf(tagName) === -1) {
-    element.remove()
+    element.remove();
   }
-}
+};

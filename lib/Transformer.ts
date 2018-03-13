@@ -10,38 +10,38 @@ import {
   replaceImg,
   replacePicture,
   setAmpOnHtml,
-} from './decorators'
+} from "./decorators";
 
-import ContextInterface from './interfaces/ContextInterface'
-import OptionsInterface from './interfaces/OptionsInterface'
-import TransformerInterface from './interfaces/TransformerInterface'
+import ContextInterface from "./interfaces/ContextInterface";
+import OptionsInterface from "./interfaces/OptionsInterface";
+import TransformerInterface from "./interfaces/TransformerInterface";
 
-import convertToDom from './convertToDom'
-import strip from './strip'
-import { walkTheTree } from './utis'
+import convertToDom from "./convertToDom";
+import strip from "./strip";
+import { walkTheTree } from "./utis";
 
 export default class Transformer implements TransformerInterface {
-  public html = ''
+  public html = "";
   public document = {
     jsdom: null,
     window: null,
     document: null,
-  }
+  };
 
   constructor(
     public options?: OptionsInterface,
     public additionalDecorators?: Function[],
-    public additionalTags?: string[]
+    public additionalTags?: string[],
   ) {}
 
   public async transform(
     html: string,
   ): Promise<string> {
-    this.html = html
+    this.html = html;
 
-    this.document = await convertToDom(html)
+    this.document = await convertToDom(html);
 
-    return await this.transformDocumentToAmp()
+    return await this.transformDocumentToAmp();
   }
 
   private async transformDocumentToAmp(): Promise<string> {
@@ -54,7 +54,7 @@ export default class Transformer implements TransformerInterface {
       setAmpOnHtml,
 
       // Strip scripts
-      (document: ContextInterface): ContextInterface => strip(document, 'script'),
+      (document: ContextInterface): ContextInterface => strip(document, "script"),
 
       // Set charset
       addCharset,
@@ -70,17 +70,17 @@ export default class Transformer implements TransformerInterface {
 
       // Replace <iframe> with <amp-iframe>
       (document: ContextInterface): Promise<ContextInterface> => (
-        replaceElement(document, 'iframe', 'amp-iframe')
+        replaceElement(document, "iframe", "amp-iframe")
       ),
 
       // Keep only whitelisted tags and remove blacklisted attributes
       (context: ContextInterface): ContextInterface => {
         walkTheTree(context.document, (element: HTMLElement) => {
-          keepWhitelistedTags(element)
-          removeBlacklistedAttributes(element)
-        })
+          keepWhitelistedTags(element);
+          removeBlacklistedAttributes(element);
+        });
 
-        return context
+        return context;
       },
 
       // Replace external stylesheets, replace inline styles
@@ -92,23 +92,22 @@ export default class Transformer implements TransformerInterface {
       // Add AMP script
       addAmpScript,
 
-
       // @TODO Include canonical link
-    ]
+    ];
 
     // Apply decorators
     for (const decorator of decorators) {
-      document = await decorator(document)
+      document = await decorator(document);
     }
 
     // Additional decorators
     if (this.additionalDecorators && this.additionalDecorators.constructor === Array) {
       for (const decorator of this.additionalDecorators) {
-        document = await decorator(document)
+        document = await decorator(document);
       }
     }
 
     // Export full HTML
-    return document.jsdom.serialize()
+    return document.jsdom.serialize();
   }
 }

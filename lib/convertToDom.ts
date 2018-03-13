@@ -1,24 +1,24 @@
-import { JSDOM } from 'jsdom'
+import { JSDOM } from "jsdom";
 
-import ContextInterface from './interfaces/ContextInterface'
+import ContextInterface from "./interfaces/ContextInterface";
 
 const convertToDom = (html: string): ContextInterface => {
   if (!html || html.length === 0) {
-    throw new Error('HTML not set')
+    throw new Error("HTML not set");
   }
 
-  let jsdom: JSDOM = new JSDOM(html)
+  let jsdom: JSDOM = new JSDOM(html);
 
   if (jsdom.window.document.doctype === null) {
-    html = `<!DOCTYPE html>${html}`
-    jsdom = new JSDOM(html)
+    html = `<!DOCTYPE html>${html}`;
+    jsdom = new JSDOM(html);
   }
 
   return {
     jsdom,
     window: jsdom.window,
-    document: jsdom.window.document
-  }
-}
+    document: jsdom.window.document,
+  };
+};
 
-export default convertToDom
+export default convertToDom;
