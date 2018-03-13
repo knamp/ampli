@@ -15,8 +15,9 @@
     "ts:lint": "tslint -c tslint.json 'lib/**/*.ts'",
     "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
     "ts:watch": "yarn ts:build --watch",
+    "lint": "yarn ts:lint",
     "build": "yarn ts:build",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn lint && yarn build"
   },
   "dependencies": {
     "clean-css": "^4.1.11",

@@ -11,7 +11,7 @@ export default async (
     "img",
     async (
       element: HTMLElement,
-      initialElement: HTMLImageElement,
+      initialElement: HTMLElement,
     ): Promise<HTMLElement> => {
       const img = initialElement.querySelector("img") as HTMLElement;
 
