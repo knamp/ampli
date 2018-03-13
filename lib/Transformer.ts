@@ -11,9 +11,10 @@ import {
   setAmpOnHtml,
 } from './decorators'
 
+import IDocument from './interfaces/IDocument'
+import IOptions from './interfaces/IOptions'
 import convertToDom from './convertToDom'
 import strip from './strip'
-import IDocument from './interfaces/IDocument'
 import { walkTheTree } from './utis'
 
 export default class Transformer {
@@ -27,6 +28,7 @@ export default class Transformer {
   }
 
   constructor(
+    options?: IOptions,
     additionalDecorators?: Function[],
     additionalTags?: string[]
   ) {
@@ -62,6 +64,24 @@ export default class Transformer {
       // Add Viewport
       addViewport,
 
+      // Replace <img> with <amp-img>, set width and height for images
+      replaceImg,
+
+      // Replace <iframe> with <amp-iframe>
+      (document: IDocument): Promise<IDocument> => (
+        replaceElement(document, 'iframe', 'amp-iframe')
+      ),
+
+      // Keep only whitelisted tags and remove blacklisted attributes
+      (context: IDocument): IDocument => {
+        walkTheTree(context.document, (element: HTMLElement) => {
+          keepWhitelistedTags(element)
+          removeBlacklistedAttributes(element)
+        })
+
+        return context
+      },
+
       // Replace external stylesheets, replace inline styles
       insertStyles,
 
@@ -71,24 +91,8 @@ export default class Transformer {
       // Add AMP script
       addAmpScript,
 
-      // Replace <img> with <amp-img>, set width and height for images
-      replaceImg,
-
-      // Replace <iframe> with <amp-iframe>
-      (document: IDocument): Promise<IDocument> => (
-        replaceElement(document, 'iframe', 'amp-iframe')
-      ),
 
       // @TODO Include canonical link
-
-      (context: IDocument) => {
-        walkTheTree(context.document, (element: HTMLElement) => {
-          keepWhitelistedTags(element);
-          removeBlacklistedAttributes(element);
-        })
-
-        return context
-      }
     ]
 
     // Apply decorators

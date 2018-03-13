@@ -22,8 +22,11 @@
     "css": "^2.2.1",
     "is-absolute-url": "^2.1.0",
     "jsdom": "^11.6.2",
+    "request": "^2.85.0",
     "request-image-size": "^2.1.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "static-styles": "^0.2.0",
+    "uncss": "^0.16.2"
   },
   "devDependencies": {
     "@types/es6-promise": "^3.3.0",
