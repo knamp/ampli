@@ -9,7 +9,7 @@ Install via NPM or yarn.
 In your application your can call Ampli like this
 
 ```javascript
-import Ampli, { ContextInterface } from 'ampli'
+import Ampli, { ContextInterface, OptionsInterface } from 'ampli'
 
 const options: OptionsInterface[]? = {
   //...
