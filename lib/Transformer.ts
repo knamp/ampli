@@ -13,28 +13,25 @@ import {
 
 import IDocument from './interfaces/IDocument'
 import IOptions from './interfaces/IOptions'
+import TransformerInterface from './interfaces/TransformerInterface'
+
 import convertToDom from './convertToDom'
 import strip from './strip'
 import { walkTheTree } from './utis'
 
-export default class Transformer {
-  private html: string = ''
-  private additionalDecorators: Function[] | undefined
-  private additionalTags: string[] | undefined
-  private document: IDocument = {
+export default class Transformer implements TransformerInterface {
+  public html = ''
+  public document = {
     jsdom: null,
     window: null,
     document: null,
   }
 
   constructor(
-    options?: IOptions,
-    additionalDecorators?: Function[],
-    additionalTags?: string[]
-  ) {
-    this.additionalDecorators = additionalDecorators
-    this.additionalTags = additionalTags
-  }
+    public options?: IOptions,
+    public additionalDecorators?: Function[],
+    public additionalTags?: string[]
+  ) {}
 
   public async transform(
     html: string,
