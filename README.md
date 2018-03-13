@@ -11,7 +11,7 @@ In your application your can call Ampli like this
 ```javascript
 import Ampli, { ContextInterface } from 'ampli'
 
-const options: IOptions[]? = {
+const options: OptionsInterface[]? = {
   //...
 }
 const additionalDecorators: Function[]? = [(document: ContextInterface) => document]

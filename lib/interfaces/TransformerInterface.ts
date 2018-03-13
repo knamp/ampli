@@ -1,4 +1,4 @@
-import IOptions from './IOptions'
+import OptionsInterface from './OptionsInterface'
 import ContextInterface from './ContextInterface'
 
 export default interface TransformerInterface {
@@ -6,5 +6,5 @@ export default interface TransformerInterface {
   document: ContextInterface
   additionalDecorators?: Function[] | undefined
   additionalTags?: string[] | undefined
-  options?: IOptions
+  options?: OptionsInterface
 }

@@ -12,7 +12,7 @@ import {
 } from './decorators'
 
 import ContextInterface from './interfaces/ContextInterface'
-import IOptions from './interfaces/IOptions'
+import OptionsInterface from './interfaces/OptionsInterface'
 import TransformerInterface from './interfaces/TransformerInterface'
 
 import convertToDom from './convertToDom'
@@ -28,7 +28,7 @@ export default class Transformer implements TransformerInterface {
   }
 
   constructor(
-    public options?: IOptions,
+    public options?: OptionsInterface,
     public additionalDecorators?: Function[],
     public additionalTags?: string[]
   ) {}
