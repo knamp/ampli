@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import Ampli, { IDocument } from '../'
+import Ampli, { ContextInterface } from '../'
 
 const inputArguments: string[] = process.argv.slice(2)
 

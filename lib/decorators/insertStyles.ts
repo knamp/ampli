@@ -1,12 +1,12 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 
 import { createElement } from '../utis/'
 import strip from '../strip'
 import ConvertStyles from '../ConverStyles'
 
 export default async (
-  context: IDocument
-): Promise<IDocument> => {
+  context: ContextInterface
+): Promise<ContextInterface> => {
   const styles: string = await new ConvertStyles(context).get()
 
   context = strip(context, 'style, link')

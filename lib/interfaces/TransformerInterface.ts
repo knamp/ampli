@@ -1,9 +1,9 @@
 import IOptions from './IOptions'
-import IDocument from './IDocument'
+import ContextInterface from './ContextInterface'
 
 export default interface TransformerInterface {
   html: string
-  document: IDocument
+  document: ContextInterface
   additionalDecorators?: Function[] | undefined
   additionalTags?: string[] | undefined
   options?: IOptions

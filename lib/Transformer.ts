@@ -11,7 +11,7 @@ import {
   setAmpOnHtml,
 } from './decorators'
 
-import IDocument from './interfaces/IDocument'
+import ContextInterface from './interfaces/ContextInterface'
 import IOptions from './interfaces/IOptions'
 import TransformerInterface from './interfaces/TransformerInterface'
 
@@ -44,7 +44,7 @@ export default class Transformer implements TransformerInterface {
   }
 
   private async transformDocumentToAmp(): Promise<string> {
-    let document: IDocument = this.document;
+    let document: ContextInterface = this.document;
 
     // Order matters
     const decorators = [
@@ -53,7 +53,7 @@ export default class Transformer implements TransformerInterface {
       setAmpOnHtml,
 
       // Strip scripts
-      (document: IDocument): IDocument => strip(document, 'script'),
+      (document: ContextInterface): ContextInterface => strip(document, 'script'),
 
       // Set charset
       addCharset,
@@ -65,12 +65,12 @@ export default class Transformer implements TransformerInterface {
       replaceImg,
 
       // Replace <iframe> with <amp-iframe>
-      (document: IDocument): Promise<IDocument> => (
+      (document: ContextInterface): Promise<ContextInterface> => (
         replaceElement(document, 'iframe', 'amp-iframe')
       ),
 
       // Keep only whitelisted tags and remove blacklisted attributes
-      (context: IDocument): IDocument => {
+      (context: ContextInterface): ContextInterface => {
         walkTheTree(context.document, (element: HTMLElement) => {
           keepWhitelistedTags(element)
           removeBlacklistedAttributes(element)

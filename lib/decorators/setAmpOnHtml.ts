@@ -1,6 +1,6 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 
-export default (context: IDocument): IDocument => {
+export default (context: ContextInterface): ContextInterface => {
   context.document.documentElement.setAttribute('amp', '')
 
   return context

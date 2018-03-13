@@ -1,4 +1,4 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 
 import blacklistAttributes from '../blacklistAttributes'
 

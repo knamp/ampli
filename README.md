@@ -9,12 +9,12 @@ Install via NPM or yarn.
 In your application your can call Ampli like this
 
 ```javascript
-import Ampli, { IDocument } from 'ampli'
+import Ampli, { ContextInterface } from 'ampli'
 
 const options: IOptions[]? = {
   //...
 }
-const additionalDecorators: Function[]? = [(document: IDocument) => document]
+const additionalDecorators: Function[]? = [(document: ContextInterface) => document]
 const additionalTags: string[]? = []
 const html: string = '' //...
 

@@ -1,6 +1,6 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 
-export default async ({ document }: IDocument, selector: string): Promise<string[]> => {
+export default async ({ document }: ContextInterface, selector: string): Promise<string[]> => {
   const elements: NodeListOf<HTMLElement> = document.querySelectorAll(selector)
   const elementsArray: HTMLElement[] = Array.from(elements);
 

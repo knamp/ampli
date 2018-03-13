@@ -1,9 +1,9 @@
-import IDocument from './interfaces/IDocument'
+import ContextInterface from './interfaces/ContextInterface'
 
 export default (
-  context: IDocument,
+  context: ContextInterface,
   selector: string
-): IDocument => {
+): ContextInterface => {
   const elements: NodeListOf<HTMLElement> = context.document.querySelectorAll(selector)
 
   Array.from(elements).forEach((element: any) => {

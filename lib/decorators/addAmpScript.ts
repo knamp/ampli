@@ -1,4 +1,4 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 
 import config from '../../config'
 import { createElement } from '../utis/'
@@ -11,8 +11,8 @@ const addScript = (element: HTMLElement): HTMLElement => {
 }
 
 export default async (
-  context: IDocument
-): Promise<IDocument> => {
+  context: ContextInterface
+): Promise<ContextInterface> => {
   const element = await createElement(context, "script", addScript)
 
   context.document.head.appendChild(element)

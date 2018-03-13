@@ -2,7 +2,7 @@ import * as Css from 'css'
 import * as CleanCSS from 'clean-css'
 import StaticStyles, { Output as StaticStylesOutput } from 'static-styles'
 
-import IDocument from './interfaces/IDocument'
+import ContextInterface from './interfaces/ContextInterface'
 
 import {
   loadFile,
@@ -11,9 +11,9 @@ import {
 
 export default class ConvertStyles {
   private cleanCss: CleanCSS
-  private context: IDocument
+  private context: ContextInterface
 
-  constructor(context: IDocument) {
+  constructor(context: ContextInterface) {
     this.context = context
     this.cleanCss = new CleanCSS({
       level: 2

@@ -1,4 +1,4 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 import { createElement } from '../utis'
 
 const addAllAttributes = (
@@ -15,11 +15,11 @@ const addAllAttributes = (
 }
 
 export default async (
-  context: IDocument,
+  context: ContextInterface,
   elementName: string,
   newElementName: string,
   getAddtionalAttributes?: Function,
-): Promise<IDocument> => {
+): Promise<ContextInterface> => {
   const elements: NodeListOf<HTMLImageElement> =
     context.document.querySelectorAll(elementName)
   const elementsArray = Array.from(elements)

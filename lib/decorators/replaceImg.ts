@@ -1,7 +1,7 @@
 import * as requestImageSize from 'request-image-size'
 import * as isAbsoluteUrl from 'is-absolute-url'
 
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 import IImageDimentions from '../interfaces/IImageDimentions'
 import { createElement } from '../utis'
 import { replaceElement } from '.'
@@ -40,8 +40,8 @@ const setDimentions = async (
 }
 
 export default async (
-  context: IDocument
-): Promise<IDocument> => {
+  context: ContextInterface
+): Promise<ContextInterface> => {
   return replaceElement(
     context,
     'img',

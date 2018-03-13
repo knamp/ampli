@@ -1,4 +1,4 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 
 import { createElement } from '../utis/'
 import strip from '../strip'
@@ -10,8 +10,8 @@ const addCharset = (element: HTMLElement): HTMLElement => {
 }
 
 export default async (
-  context: IDocument
-): Promise<IDocument> => {
+  context: ContextInterface
+): Promise<ContextInterface> => {
   const element = await createElement(context, "meta", addCharset)
 
   context = strip(context, 'meta[charset]')

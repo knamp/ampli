@@ -1,7 +1,7 @@
-import IDocument from '../interfaces/IDocument'
+import ContextInterface from '../interfaces/ContextInterface'
 
 export default async (
-  { document }: IDocument,
+  { document }: ContextInterface,
   elementName: string,
   transform: Function = element => element
 ): Promise<HTMLElement> => {
