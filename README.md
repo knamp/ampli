@@ -11,18 +11,23 @@ In your application your can call Ampli like this
 ```javascript
 import Ampli, { ContextInterface, OptionsInterface } from 'ampli'
 
-const options: OptionsInterface[]? = {
+const options: OptionsInterface? = {
   //...
 }
 const additionalDecorators: Function[]? = [(document: ContextInterface) => document]
-const additionalTags: string[]? = []
 const html: string = '' //...
 
-const ampli: Ampli = new Ampli(options, additionalDecorators, addtionalTags)
+const ampli: Ampli = new Ampli(options, additionalDecorators)
 const amp: string = await ampli.transform(html)
 
 console.log(amp)
 ```
+
+## Options
+
+* `logger?: LoggerInterface`, use this object as logger instance, default `console`
+* `useStaticCss?: boolean`, remove CSS that is not used, default: `false`
+* `additionalTags?: string[]`, custom HTML-tags that should be left in code
 
 ## Constrains
 

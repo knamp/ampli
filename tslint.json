@@ -9,7 +9,12 @@
       true,
       "ban-keywords",
       "check-format"
-    ]
+    ],
+    "interface-name": {
+      "options": [
+        "never-prefix"
+      ]
+    }
   },
   "rulesDirectory": []
 }

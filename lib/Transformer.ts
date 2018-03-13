@@ -22,16 +22,15 @@ import { walkTheTree } from "./utis";
 
 export default class Transformer implements TransformerInterface {
   public html = "";
-  public document = {
+  public context = {
+    document: null,
     jsdom: null,
     window: null,
-    document: null,
   };
 
   constructor(
     public options?: OptionsInterface,
-    public additionalDecorators?: Function[],
-    public additionalTags?: string[],
+    public additionalDecorators?: Array<(context: ContextInterface) => ContextInterface>,
   ) {}
 
   public async transform(
@@ -39,13 +38,13 @@ export default class Transformer implements TransformerInterface {
   ): Promise<string> {
     this.html = html;
 
-    this.document = await convertToDom(html);
+    this.context = await convertToDom(html);
 
     return await this.transformDocumentToAmp();
   }
 
   private async transformDocumentToAmp(): Promise<string> {
-    let document: ContextInterface = this.document;
+    let context: ContextInterface = this.context;
 
     // Order matters
     const decorators = [
@@ -54,7 +53,7 @@ export default class Transformer implements TransformerInterface {
       setAmpOnHtml,
 
       // Strip scripts
-      (document: ContextInterface): ContextInterface => strip(document, "script"),
+      (): ContextInterface => strip(context, "script"),
 
       // Set charset
       addCharset,
@@ -69,12 +68,12 @@ export default class Transformer implements TransformerInterface {
       replaceImg,
 
       // Replace <iframe> with <amp-iframe>
-      (document: ContextInterface): Promise<ContextInterface> => (
-        replaceElement(document, "iframe", "amp-iframe")
+      (): Promise<ContextInterface> => (
+        replaceElement(context, "iframe", "amp-iframe")
       ),
 
       // Keep only whitelisted tags and remove blacklisted attributes
-      (context: ContextInterface): ContextInterface => {
+      (): ContextInterface => {
         walkTheTree(context.document, (element: HTMLElement) => {
           keepWhitelistedTags(element);
           removeBlacklistedAttributes(element);
@@ -97,17 +96,17 @@ export default class Transformer implements TransformerInterface {
 
     // Apply decorators
     for (const decorator of decorators) {
-      document = await decorator(document);
+      context = await decorator(context);
     }
 
     // Additional decorators
     if (this.additionalDecorators && this.additionalDecorators.constructor === Array) {
       for (const decorator of this.additionalDecorators) {
-        document = await decorator(document);
+        context = await decorator(context);
       }
     }
 
     // Export full HTML
-    return document.jsdom.serialize();
+    return context.jsdom.serialize();
   }
 }

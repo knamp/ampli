@@ -1,3 +1,11 @@
+interface LoggerInterface {
+  info: () => void;
+  error: () => void;
+  debug: () => void;
+}
+
 export default interface OptionsInterface {
-  uncss?: number;
+  logger?: LoggerInterface;
+  useStaticCss?: boolean;
+  additionalTags?: string[];
 }
