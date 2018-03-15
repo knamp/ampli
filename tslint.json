@@ -16,5 +16,11 @@
       ]
     }
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "dist/**/*",
+      "node_modules/**/*"
+    ]
+  }
 }

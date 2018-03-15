@@ -12,7 +12,7 @@
     "serve": "http-server dist/__tests__/",
     "test": "jest",
     "test:watch": "yarn test --watch",
-    "ts:lint": "tslint -c tslint.json 'lib/**/*.ts'",
+    "ts:lint": "tslint '**/*.ts'",
     "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
     "ts:watch": "yarn ts:build --watch",
     "lint": "yarn ts:lint",
@@ -36,7 +36,6 @@
     "concurrently": "^3.5.1",
     "http-server": "^0.11.1",
     "jest": "^22.4.2",
-    "tsc": "^1.20150623.0",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2"
   }
