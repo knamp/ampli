@@ -1,5 +1,5 @@
 {
-  "name": "ampli",
+  "name": "@knamp/ampli",
   "version": "0.1.0",
   "description": "HTML to AMP converter",
   "main": "dist/index.js",
