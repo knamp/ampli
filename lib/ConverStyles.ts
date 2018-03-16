@@ -3,8 +3,9 @@ import * as Css from "css";
 import StaticStyles, { Output as StaticStylesOutput } from "static-styles";
 
 import ContextInterface from "./interfaces/ContextInterface";
-import Logger from "./Logger";
+import OptionsInterface from "./interfaces/OptionsInterface";
 
+import Logger from "./Logger";
 import {
   getElementContent,
   loadFile,
@@ -12,10 +13,11 @@ import {
 
 export default class ConvertStyles {
   private cleanCss: CleanCSS;
-  private context: ContextInterface;
 
-  constructor(context: ContextInterface) {
-    this.context = context;
+  constructor(
+    private context: ContextInterface,
+    private options?: OptionsInterface,
+  ) {
     this.cleanCss = new CleanCSS({
       level: 2,
     });
@@ -24,11 +26,18 @@ export default class ConvertStyles {
   public async get(): Promise<string> {
     const styles: string = await this.getInlineStyles();
     const filteredStyles: string = this.filterStyles(styles);
-    const html: string = this.context.jsdom.serialize();
-    const stylesInUse: StaticStylesOutput = StaticStyles(html, filteredStyles);
-    const minifiedStyles = this.cleanCss.minify(stylesInUse.css);
+    let compiledStyles: string = filteredStyles;
 
-    Logger.info("Cleaned styles from unused", stylesInUse.stats);
+    if (this.options && this.options.useStaticCss) {
+      const html: string = this.context.jsdom.serialize();
+      const stylesInUse: StaticStylesOutput = StaticStyles(html, filteredStyles);
+      compiledStyles = stylesInUse.css;
+
+      Logger.info("Cleaned styles from unused", stylesInUse.stats);
+    }
+
+    const minifiedStyles = this.cleanCss.minify(compiledStyles);
+
     Logger.info("Minified styles", minifiedStyles.stats);
 
     return minifiedStyles.styles;

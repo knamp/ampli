@@ -9,7 +9,7 @@ export default async (
   context: ContextInterface,
   options?: OptionsInterface,
 ): Promise<ContextInterface> => {
-  const styles: string = await new ConvertStyles(context).get();
+  const styles: string = await new ConvertStyles(context, options).get();
 
   context = strip(context, "style, link");
 
