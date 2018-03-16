@@ -15,7 +15,7 @@ import Ampli, { ContextInterface, OptionsInterface } from "ampli"
 const options: OptionsInterface | null = {
   //...
 }
-const additionalDecorators: Function[] | null = [(document: ContextInterface) => document]
+const additionalDecorators: Function[] | null = [(document: ContextInterface, options: OptionsInterface) => document]
 const html: string = "" //...
 
 const ampli: Ampli = new Ampli(options, additionalDecorators)
@@ -33,6 +33,11 @@ log.info(amp)
 ## Constrains
 
 You must provide fully qualified URLs for images, stylesheets.
+
+## TODO
+
+* Make it possible to prefix relative URLs automatically with specific URL
+* Add mechanism to include canonical tag
 
 ## License
 
