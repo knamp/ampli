@@ -35,7 +35,7 @@ export default class Transformer implements TransformerInterface {
       (
         context: ContextInterface,
         options?: OptionsInterface,
-      ) => ContextInterface
+      ) => ContextInterface | Promise<ContextInterface>
     >,
   ) {
     if (options && options.logger) {
