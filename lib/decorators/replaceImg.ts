@@ -1,9 +1,11 @@
 import * as isAbsoluteUrl from "is-absolute-url";
 import * as requestImageSize from "request-image-size";
 
-import { replaceElement } from ".";
 import ContextInterface from "../interfaces/ContextInterface";
 import ImageDimentionsInterface from "../interfaces/ImageDimentionsInterface";
+import OptionsInterface from "../interfaces/OptionsInterface";
+
+import { replaceElement } from ".";
 import Logger from "../Logger";
 import { createElement } from "../utis";
 
@@ -42,6 +44,7 @@ const setDimentions = async (
 
 export default async (
   context: ContextInterface,
+  options?: OptionsInterface,
 ): Promise<ContextInterface> => {
   return replaceElement(
     context,

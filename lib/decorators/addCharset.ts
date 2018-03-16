@@ -1,4 +1,5 @@
 import ContextInterface from "../interfaces/ContextInterface";
+import OptionsInterface from "../interfaces/OptionsInterface";
 
 import strip from "../strip";
 import { createElement } from "../utis/";
@@ -11,6 +12,7 @@ const addCharset = (element: HTMLElement): HTMLElement => {
 
 export default async (
   context: ContextInterface,
+  options?: OptionsInterface,
 ): Promise<ContextInterface> => {
   const element = await createElement(context, "meta", addCharset);
 

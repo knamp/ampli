@@ -101,13 +101,13 @@ export default class Transformer implements TransformerInterface {
 
     // Apply decorators
     for (const decorator of decorators) {
-      context = await decorator(context);
+      context = await decorator(context, this.options);
     }
 
     // Additional decorators
     if (this.additionalDecorators && this.additionalDecorators.constructor === Array) {
       for (const decorator of this.additionalDecorators) {
-        context = await decorator(context);
+        context = await decorator(context, this.options);
       }
     }
 

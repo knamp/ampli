@@ -1,4 +1,5 @@
 import ContextInterface from "../interfaces/ContextInterface";
+import OptionsInterface from "../interfaces/OptionsInterface";
 
 import ConvertStyles from "../ConverStyles";
 import strip from "../strip";
@@ -6,6 +7,7 @@ import { createElement } from "../utis/";
 
 export default async (
   context: ContextInterface,
+  options?: OptionsInterface,
 ): Promise<ContextInterface> => {
   const styles: string = await new ConvertStyles(context).get();
 

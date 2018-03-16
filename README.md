@@ -21,7 +21,7 @@ const html: string = "" //...
 const ampli: Ampli = new Ampli(options, additionalDecorators)
 const amp: string = await ampli.transform(html)
 
-log.ingo(amp)
+log.info(amp)
 ```
 
 ## Options

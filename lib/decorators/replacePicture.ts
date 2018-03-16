@@ -1,9 +1,12 @@
-import { replaceElement } from ".";
 import ContextInterface from "../interfaces/ContextInterface";
+import OptionsInterface from "../interfaces/OptionsInterface";
+
+import { replaceElement } from ".";
 import { addAllAttributes } from "../utis";
 
 export default async (
   context: ContextInterface,
+  options?: OptionsInterface,
 ): Promise<ContextInterface> => {
   return replaceElement(
     context,
