@@ -31,7 +31,12 @@ export default class Transformer implements TransformerInterface {
 
   constructor(
     public options?: OptionsInterface,
-    public additionalDecorators?: Array<(context: ContextInterface) => ContextInterface>,
+    public additionalDecorators?: Array<
+      (
+        context: ContextInterface,
+        options?: OptionsInterface,
+      ) => ContextInterface
+    >,
   ) {
     if (options && options.logger) {
       setLogger(options.logger);
