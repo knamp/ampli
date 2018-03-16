@@ -7,7 +7,7 @@ import OptionsInterface from "../interfaces/OptionsInterface";
 
 import { replaceElement } from ".";
 import Logger from "../Logger";
-import { createElement } from "../utis";
+import { createElement } from "../utils";
 
 const setLayout = (element: HTMLElement): HTMLElement => {
   element.setAttribute("layout", "responsive");

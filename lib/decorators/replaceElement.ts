@@ -2,7 +2,7 @@ import ContextInterface from "../interfaces/ContextInterface";
 import {
   addAllAttributes,
   createElement,
-} from "../utis";
+} from "../utils";
 
 export default async (
   context: ContextInterface,

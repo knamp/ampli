@@ -19,7 +19,7 @@ import TransformerInterface from "./interfaces/TransformerInterface";
 import convertToDom from "./convertToDom";
 import { set as setLogger } from "./Logger";
 import strip from "./strip";
-import { walkTheTree } from "./utis";
+import { walkTheTree } from "./utils";
 
 export default class Transformer implements TransformerInterface {
   public html = "";

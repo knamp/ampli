@@ -2,7 +2,7 @@ import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
 
 import strip from "../strip";
-import { createElement } from "../utis/";
+import { createElement } from "../utils/";
 
 const addViewport = (element: HTMLElement): HTMLElement => {
   element.setAttribute("name", "viewport");

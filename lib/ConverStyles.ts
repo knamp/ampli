@@ -9,7 +9,7 @@ import Logger from "./Logger";
 import {
   getElementContent,
   loadFile,
-} from "./utis/";
+} from "./utils/";
 
 export default class ConvertStyles {
   private cleanCss: CleanCSS;

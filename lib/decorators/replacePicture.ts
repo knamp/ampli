@@ -2,7 +2,7 @@ import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
 
 import { replaceElement } from ".";
-import { addAllAttributes } from "../utis";
+import { addAllAttributes } from "../utils";
 
 export default async (
   context: ContextInterface,

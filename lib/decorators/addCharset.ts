@@ -2,7 +2,7 @@ import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
 
 import strip from "../strip";
-import { createElement } from "../utis/";
+import { createElement } from "../utils/";
 
 const addCharset = (element: HTMLElement): HTMLElement => {
   element.setAttribute("charset", "utf-8");

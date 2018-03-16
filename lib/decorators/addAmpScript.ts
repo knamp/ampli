@@ -2,7 +2,7 @@ import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
 
 import packageConfig from "../../config";
-import { createElement } from "../utis/";
+import { createElement } from "../utils/";
 
 const addScript = (element: HTMLElement): HTMLElement => {
   element.setAttribute("async", "");
