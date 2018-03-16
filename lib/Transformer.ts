@@ -57,7 +57,12 @@ export default class Transformer implements TransformerInterface {
     let context: ContextInterface = this.context;
 
     // Order matters
-    const decorators = [
+    const decorators: Array<
+      (
+        context: ContextInterface,
+        options?: OptionsInterface,
+      ) => ContextInterface | Promise<ContextInterface>
+    > = [
 
       // Set AMP attribute on HTML element
       setAmpOnHtml,
@@ -92,6 +97,16 @@ export default class Transformer implements TransformerInterface {
         return context;
       },
 
+      // @TODO Include canonical link
+    ];
+
+    const decorateAtTheEnd: Array<
+      (
+        context: ContextInterface,
+        options?: OptionsInterface,
+      ) => ContextInterface | Promise<ContextInterface>
+    > = [
+
       // Replace external stylesheets, replace inline styles
       insertStyles,
 
@@ -100,8 +115,6 @@ export default class Transformer implements TransformerInterface {
 
       // Add AMP script
       addAmpScript,
-
-      // @TODO Include canonical link
     ];
 
     // Apply decorators
@@ -114,6 +127,11 @@ export default class Transformer implements TransformerInterface {
       for (const decorator of this.additionalDecorators) {
         context = await decorator(context, this.options);
       }
+    }
+
+    // Apply decorators that should be done as last action
+    for (const decorator of decorateAtTheEnd) {
+      context = await decorator(context, this.options);
     }
 
     // Export full HTML
