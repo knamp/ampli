@@ -5,8 +5,13 @@
 <style>body { background: #000 }</style>
 
 <p>Content</p>
-<img src="https://drublic.de/posts/53-cycle-of-development/header.jpg" alt="This is the header" />
-<img src="https://drublic.de/no-route" alt="Failing Image" />
+<img src="https://drublic.de/posts/53-cycle-of-development/header.jpg" alt="This is the header">
+<img src="https://drublic.de/no-route" alt="Failing Image">
 
+<picture>
+  <source srcset="https://drublic.de/posts/53-cycle-of-development/header.jpg 300w, https://drublic.de/posts/53-cycle-of-development/header.jpg 600w, https://drublic.de/posts/53-cycle-of-development/header.jpg 900w"
+      type="image/jpeg" sizes="300px" alt="Header Image">
+  <img src="https://drublic.de/posts/53-cycle-of-development/header.jpg" alt="Failing Image">
+</picture>
 
 <canvas class="remove"></canvas>

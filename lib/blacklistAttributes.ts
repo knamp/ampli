@@ -15,4 +15,7 @@ export default [{
 }, {
   attributes: ["target"],
   selector: "a",
+}, {
+  attributes: ["type"],
+  selector: "amp-img",
 }];
