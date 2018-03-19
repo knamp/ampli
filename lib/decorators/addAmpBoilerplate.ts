@@ -1,3 +1,5 @@
+import * as fs from "fs";
+import * as path from "path";
 import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
 
@@ -5,45 +7,10 @@ export default (
   context: ContextInterface,
   options?: OptionsInterface,
 ): ContextInterface => {
-  context.document.head.innerHTML += `
-    <style amp-boilerplate>
-      body {
-        -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-        -moz-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
-        -ms-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
-        animation: -amp-start 8s steps(1,end) 0s 1 normal both
-      }
-      @-webkit-keyframes -amp-start {
-        from { visibility:hidden }
-        to { visibility:visible }
-      }
-      @-moz-keyframes -amp-start {
-        from { visibility:hidden }
-        to { visibility:visible }
-      }
-      @-ms-keyframes -amp-start {
-        from { visibility:hidden }
-        to { visibility:visible }
-      }
-      @-o-keyframes -amp-start {
-        from { visibility:hidden }
-        to { visibility:visible }
-      }
-      @keyframes -amp-start {
-        from { visibility:hidden }
-        to { visibility:visible }
-      }
-      </style>
-      <noscript>
-        <style amp-boilerplate>
-          body {
-            -webkit-animation: none;
-            -moz-animation: none;
-            -ms-animation: none;
-            animation: none
-          }
-      </style>
-    </noscript>`;
+  const boilerplatePath: string = path.resolve(__dirname, "../../../lib/boilerplate", "boilerplate.html");
+  const boilerplate: Buffer = fs.readFileSync(boilerplatePath);
+
+  context.document.head.innerHTML += boilerplate.toString();
 
   return context;
 };
