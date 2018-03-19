@@ -38,7 +38,6 @@ You must provide fully qualified URLs for images, stylesheets.
 
 * Make it possible to prefix relative URLs automatically with specific URL
 * Add mechanism to include canonical tag
-* Load images in parallel
 
 ## License
 
