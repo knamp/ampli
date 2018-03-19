@@ -18,7 +18,7 @@ const setLayout = (element: HTMLElement): HTMLElement => {
 const setDimentions = async (
   element: HTMLElement,
   image: HTMLImageElement,
-): Promise<HTMLElement> => {
+): Promise<HTMLElement | null> => {
   const src: string = image.src;
   let dimentions: ImageDimentionsInterface = {
     height: 0,
@@ -30,16 +30,19 @@ const setDimentions = async (
   if (!src.startsWith("data:") && isAbsoluteUrl(src)) {
     try {
       dimentions = await requestImageSize(image.src);
+
+      element.setAttribute("width", `${dimentions.width}`);
+      element.setAttribute("height", `${dimentions.height}`);
+
+      return element;
     } catch (error) {
-      Logger.error(`Cannot get file ${image.src}`, error);
+      Logger.error(`Cannot get file ${image.src}, removing element`, error);
+
+      element.remove();
     }
   }
 
-  element.setAttribute("width", `${dimentions.width}`);
-  element.setAttribute("height", `${dimentions.height}`);
-  element.setAttribute("layout", "responsive");
-
-  return element;
+  return null;
 };
 
 export default async (
@@ -53,11 +56,10 @@ export default async (
     async (
       element: HTMLElement,
       initialElement: HTMLElement,
-    ): Promise<HTMLElement> => {
-      element = setLayout(element);
-      element = await setDimentions(element, initialElement as HTMLImageElement);
+    ): Promise<HTMLElement | null> => {
+      const newElement = setLayout(element);
 
-      return element;
+      return await setDimentions(newElement, initialElement as HTMLImageElement);
     },
   );
 };
