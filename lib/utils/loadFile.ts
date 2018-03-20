@@ -4,7 +4,9 @@ import * as request from "request-promise-native";
 import Logger from "../Logger";
 
 export default async (href: string): Promise<string> => {
-  Logger.info(`Trying to fetch CSS ${href}`);
+  if (process.env.DEBUG === "*") {
+    Logger.info(`Trying to fetch CSS ${href}`);
+  }
 
   if (!href.startsWith("data:") && isAbsoluteUrl(href)) {
     try {

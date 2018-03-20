@@ -25,7 +25,9 @@ const setDimentions = async (
     width: 0,
   };
 
-  Logger.info(`Trying to fetch image ${src}`);
+  if (process.env.DEBUG === "*") {
+    Logger.info(`Trying to fetch image ${src}`);
+  }
 
   if (!src.startsWith("data:") && isAbsoluteUrl(src)) {
     try {
