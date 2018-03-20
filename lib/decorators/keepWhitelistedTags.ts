@@ -1,7 +1,9 @@
+import OptionsInterface from "../interfaces/OptionsInterface";
 import whitelist from "../whitelist";
 
 export default (
   element: HTMLElement,
+  options?: OptionsInterface,
 ) => {
   if (!element.tagName) {
     return;
@@ -9,7 +11,9 @@ export default (
 
   const tagName: string = element.tagName.toLowerCase();
 
-  if (whitelist.indexOf(tagName) === -1) {
+  if (whitelist.indexOf(tagName) === -1 &&
+    options && options.additionalTags && options.additionalTags.indexOf(tagName) === -1
+  ) {
     element.remove();
   }
 };

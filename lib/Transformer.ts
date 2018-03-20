@@ -90,7 +90,7 @@ export default class Transformer implements TransformerInterface {
       // Keep only whitelisted tags and remove blacklisted attributes
       (): ContextInterface => {
         walkTheTree(context.document, (element: HTMLElement) => {
-          keepWhitelistedTags(element);
+          keepWhitelistedTags(element, this.options);
           removeBlacklistedAttributes(element);
         });
 
