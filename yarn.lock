@@ -2630,9 +2630,9 @@ standard-http-error@^2.0.1:
   dependencies:
     standard-error ">= 1.1.0 < 2"
 
-static-styles@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/static-styles/-/static-styles-0.2.1.tgz#6e6cf4091ec2874ea2cefc503e3ca67071516140"
+static-styles@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/static-styles/-/static-styles-0.3.1.tgz#e062772025fac6349cce4266e58fdc2f601d4dcd"
   dependencies:
     "@types/es6-promise" "^3.3.0"
     "@types/node" "^9.4.7"
