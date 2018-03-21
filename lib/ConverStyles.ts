@@ -79,7 +79,6 @@ export default class ConvertStyles {
     return rules.map((rule) => {
 
       // Remove @page, remove @media print
-      console.log(rule)
       if (
         ["page", "charset", "document"].indexOf(rule.type) > -1 ||
         ["print"].indexOf(rule.media) > -1
