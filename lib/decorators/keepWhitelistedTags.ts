@@ -10,9 +10,11 @@ export default (
   }
 
   const tagName: string = element.tagName.toLowerCase();
+  const additionalTags: string[] = options && options.additionalTags || [];
 
-  if (whitelist.indexOf(tagName) === -1 &&
-    (!options || !options.additionalTags || options.additionalTags.indexOf(tagName) === -1)
+  if (
+    whitelist.indexOf(tagName) === -1 &&
+    additionalTags.indexOf(tagName) === -1
   ) {
     element.remove();
   }
