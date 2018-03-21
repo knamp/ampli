@@ -16,7 +16,7 @@
     "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
     "ts:watch": "yarn ts:build --watch",
     "codecov": "codecov",
-    "coverage": "yarn ts:test --jest && yarn codecov",
+    "coverage": "yarn ts:test --coverage && yarn codecov",
     "lint": "yarn ts:lint",
     "build": "yarn ts:build",
     "ci": "yarn lint && yarn ts:test && yarn build",
