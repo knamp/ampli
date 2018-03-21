@@ -83,7 +83,7 @@ export default class ConvertStyles {
         ["page", "charset", "-moz-document"].indexOf(rule.type) > -1 ||
         ["print"].indexOf(rule.media) > -1
       ) {
-        rule.rules = [];
+        rule.delete = true;
 
         return rule;
       }
@@ -105,7 +105,7 @@ export default class ConvertStyles {
       }
 
       return rule;
-    });
+    }).filter((item) => item.delete !== true);
   }
 
   private filterStyles(styles: string): string {
