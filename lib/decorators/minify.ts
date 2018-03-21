@@ -10,5 +10,8 @@ export default (
     collapseBooleanAttributes: true,
     collapseWhitespace: true,
     removeAttributeQuotes: true,
+    removeComments: true,
+    removeRedundantAttributes: true,
+    useShortDoctype: true,
   });
 };
