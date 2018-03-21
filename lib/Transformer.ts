@@ -69,7 +69,7 @@ export default class Transformer implements TransformerInterface {
       setAmpOnHtml,
 
       // Strip scripts
-      (): ContextInterface => strip(context, "script"),
+      (): ContextInterface => strip(context, "script:not([type='application/ld+json'])"),
 
       // Set charset
       addCharset,

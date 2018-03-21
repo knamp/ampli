@@ -4,7 +4,6 @@
 [![codecov](https://codecov.io/gh/knamp/ampli/branch/master/graph/badge.svg)](https://codecov.io/gh/knamp/ampli)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fknamp%2Fampli.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fknamp%2Fampli?ref=badge_shield)
 
-
 HTML to AMP tranformer
 
 ## Usage
