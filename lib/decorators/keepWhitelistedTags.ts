@@ -12,7 +12,7 @@ export default (
   const tagName: string = element.tagName.toLowerCase();
 
   if (whitelist.indexOf(tagName) === -1 &&
-    options && options.additionalTags && options.additionalTags.indexOf(tagName) === -1
+    (!options || !options.additionalTags || options.additionalTags.indexOf(tagName) === -1)
   ) {
     element.remove();
   }
