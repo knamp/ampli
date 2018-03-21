@@ -1,4 +1,6 @@
 # AMPLI
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fknamp%2Fampli.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fknamp%2Fampli?ref=badge_shield)
+
 
 HTML to AMP tranformer
 
@@ -42,3 +44,6 @@ You must provide fully qualified URLs for images, stylesheets.
 ## License
 
 This project is under MIT license.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fknamp%2Fampli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fknamp%2Fampli?ref=badge_large)
