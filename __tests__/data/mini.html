@@ -2,7 +2,15 @@
 
 <script></script>
 <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.0/normalize.css">
-<style>@charset 'utf8'; body { background: #000 }</style>
+<style>
+  @charset 'utf8';
+  body { background: #000 }
+  @-moz-document url-prefix () {
+    body {
+      background: #aaa;
+    }
+  }
+</style>
 
 <p>Content</p>
 <img src="https://drublic.de/posts/53-cycle-of-development/header.jpg" alt="This is the header">

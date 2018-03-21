@@ -79,8 +79,9 @@ export default class ConvertStyles {
     return rules.map((rule) => {
 
       // Remove @page, remove @media print
+      console.log(rule)
       if (
-        ["page", "charset", "-moz-document"].indexOf(rule.type) > -1 ||
+        ["page", "charset", "document"].indexOf(rule.type) > -1 ||
         ["print"].indexOf(rule.media) > -1
       ) {
         rule.delete = true;
