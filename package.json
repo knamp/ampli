@@ -10,13 +10,14 @@
   "scripts": {
     "start": "concurrently 'yarn serve' 'yarn ts:watch'",
     "serve": "http-server dist/__tests__/",
-    "test": "jest",
-    "test:watch": "yarn test --watch",
+    "ts:test": "jest",
+    "ts:test:watch": "yarn test --watch",
     "ts:lint": "tslint '**/*.ts'",
     "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
     "ts:watch": "yarn ts:build --watch",
     "lint": "yarn ts:lint",
     "build": "yarn ts:build",
+    "ci": "yarn lint && yarn ts:test && yarn build",
     "prepublishOnly": "yarn lint && yarn build"
   },
   "dependencies": {
