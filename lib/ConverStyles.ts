@@ -19,7 +19,7 @@ export default class ConvertStyles {
     private options?: OptionsInterface,
   ) {
     this.cleanCss = new CleanCSS({
-      level: 2,
+      level: 1,
     });
   }
 
