@@ -40,6 +40,8 @@ You must provide fully qualified URLs for images, stylesheets.
 
 * Make it possible to prefix relative URLs automatically with specific URL
 * Add mechanism to include canonical tag
+* Allow scripts with `type="application/ld+json"`
+* Fix SVG requests
 
 ## License
 

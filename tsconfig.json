@@ -16,7 +16,8 @@
       "esnext"
     ],
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "outDir": "dist/"
   },
