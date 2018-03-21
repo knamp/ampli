@@ -5,6 +5,7 @@ import {
   addViewport,
   insertStyles,
   keepWhitelistedTags,
+  minify,
   removeBlacklistedAttributes,
   replaceElement,
   replaceImg,
@@ -135,6 +136,9 @@ export default class Transformer implements TransformerInterface {
     }
 
     // Export full HTML
-    return context.jsdom.serialize();
+    let html: string = context.jsdom.serialize();
+    html = minify(html, this.options);
+
+    return html;
   }
 }
