@@ -14,7 +14,7 @@
     "ts:test:watch": "yarn test --watch",
     "ts:lint": "tslint -c tslint.json '**/*.ts'",
     "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
-    "ts:watch": "yarn ts:build --watch",
+    "ts:watch": "yarn ts:build --watch && yarn copy:boilerplate",
     "copy:boilerplate": "cp -r ./boilerplate dist/",
     "codecov": "codecov",
     "coverage": "yarn ts:test --coverage && yarn codecov",
