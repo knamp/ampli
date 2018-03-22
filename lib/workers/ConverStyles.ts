@@ -105,7 +105,7 @@ export default class ConvertStyles {
     const baseDir: string = this.getDirFromFileUrl(response.src);
 
     const transformedResponse: string = response.response.replace(
-      /url\((.*?)\)/g,
+      /url\(\"?(.*?)\"?\)/g,
       (match: string, matchedUrl: string): string => (
         `url(${url.resolve(baseDir, matchedUrl)})`
       ),
