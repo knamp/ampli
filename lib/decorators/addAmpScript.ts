@@ -1,9 +1,9 @@
+import AdditionalScriptsInterface from "../interfaces/AdditionalScriptsInterface";
 import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
 
 import packageConfig from "../../config";
 import { createElement } from "../utils/";
-import AdditionalScriptsInterface from "../interfaces/AdditionalScriptsInterface";
 
 const addScript = (element: HTMLElement): HTMLElement => {
   element.setAttribute("async", "");
