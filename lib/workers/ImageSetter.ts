@@ -1,5 +1,6 @@
 import * as isAbsoluteUrl from "is-absolute-url";
 import * as requestImageSize from "request-image-size";
+import * as url from "url";
 
 import ImageDimentionsInterface from "../interfaces/ImageDimentionsInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
@@ -38,7 +39,7 @@ export default class ImageSetter {
     }
 
     if (!isAbsoluteUrl(src) && this.options && this.options.baseUrl) {
-      src = `${this.options.baseUrl}${src}`;
+      src = url.resolve(this.options.baseUrl, src);
     }
 
     return src;
