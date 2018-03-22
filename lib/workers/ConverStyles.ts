@@ -1,9 +1,12 @@
 import * as CleanCSS from "clean-css";
 import * as Css from "css";
+import * as path from "path";
 import StaticStyles, { Output as StaticStylesOutput } from "static-styles";
+import * as url from "url";
 
 import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
+import StylesheetResponseInterface from "../interfaces/StylesheetResponseInterface";
 
 import Logger from "../Logger";
 import {
@@ -21,6 +24,8 @@ export default class ConvertStyles {
     this.cleanCss = new CleanCSS({
       level: 1,
     });
+
+    this.transformResponse = this.transformResponse.bind(this);
   }
 
   public async get(): Promise<string> {
@@ -44,27 +49,23 @@ export default class ConvertStyles {
   }
 
   private getInlineStyles = async () => {
-    const stylesheetContent: string[] = await this.getStylesheets();
+    const responses: Array<StylesheetResponseInterface | null> =
+      await this.getStylesheets();
+    const transformedResponses: string[] = this.transformResponses(responses);
     const styleElementContent: string[] = await getElementContent(this.context, "style");
 
-    return stylesheetContent.concat(styleElementContent).join(" ");
+    return transformedResponses.concat(styleElementContent).join(" ");
   }
 
-  private getStylesheets = async (): Promise<string[]> => {
+  private getStylesheets = async (): Promise<
+    Array<StylesheetResponseInterface | null>
+  > => {
     const { document } = this.context;
     const stylesheetElements: NodeListOf<HTMLElement> =
       document.querySelectorAll('link[rel="stylesheet"]');
     const stylesheets: HTMLElement[] = Array.from(stylesheetElements);
-    const promises: Array<Promise<string>> = stylesheets
-      .map((stylesheet: HTMLElement) => {
-        const href: string | null = stylesheet.getAttribute("href");
-
-        if (!href) {
-          return Promise.resolve("");
-        }
-
-        return loadFile(href);
-      });
+    const promises: Array< Promise<StylesheetResponseInterface | null> > =
+      stylesheets.map(this.getSingleStylesheet);
 
     try {
       return await Promise.all(promises);
@@ -75,7 +76,49 @@ export default class ConvertStyles {
     return [];
   }
 
-  private filterRules = (rules: any[]): any[] => {
+  private async getSingleStylesheet(stylesheet: HTMLElement): Promise<
+    StylesheetResponseInterface | null
+  > {
+    const href: string | null = stylesheet.getAttribute("href");
+
+    if (!href) {
+      return null;
+    }
+
+    const response: string = await loadFile(href);
+
+    return {
+      response,
+      src: href,
+    };
+  }
+
+  private transformResponses(responses: Array<StylesheetResponseInterface | null>): string[] {
+    return responses.map(this.transformResponse);
+  }
+
+  private transformResponse(response: StylesheetResponseInterface | null): string {
+    if (response === null) {
+      return "";
+    }
+
+    const baseDir: string = this.getDirFromFileUrl(response.src);
+
+    const transformedResponse: string = response.response.replace(
+      /url\((.*?)\)/g,
+      (match: string, matchedUrl: string): string => (
+        `url(${url.resolve(baseDir, matchedUrl)})`
+      ),
+    );
+
+    return transformedResponse;
+  }
+
+  private getDirFromFileUrl(fileurl: string): string {
+    return `${path.dirname(fileurl)}/`;
+  }
+
+  private filterRules(rules: any[]): any[] {
     return rules.map((rule) => {
 
       // Remove @page, remove @media print

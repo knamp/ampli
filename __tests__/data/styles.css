@@ -1,0 +1,5 @@
+.with-background {
+  width: 4rem;
+  height: 4rem;
+  background-image: url(/img/github.svg)
+}
