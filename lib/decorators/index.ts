@@ -1,6 +1,7 @@
 export { default as addAmpBoilerplate } from "./addAmpBoilerplate";
 export { default as addAmpScript } from "./addAmpScript";
 export { default as addCharset } from "./addCharset";
+export { default as addCanonical } from "./addCanonical";
 export { default as addViewport } from "./addViewport";
 export { default as insertStyles } from "./insertStyles";
 export { default as keepWhitelistedTags } from "./keepWhitelistedTags";

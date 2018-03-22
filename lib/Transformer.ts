@@ -1,6 +1,7 @@
 import {
   addAmpBoilerplate,
   addAmpScript,
+  addCanonical,
   addCharset,
   addViewport,
   insertStyles,
@@ -46,15 +47,16 @@ export default class Transformer implements TransformerInterface {
 
   public async transform(
     html: string,
+    canonical: string,
   ): Promise<string> {
     this.html = html;
 
     this.context = await convertToDom(html);
 
-    return await this.transformDocumentToAmp();
+    return await this.transformDocumentToAmp(canonical);
   }
 
-  private async transformDocumentToAmp(): Promise<string> {
+  private async transformDocumentToAmp(canonical: string): Promise<string> {
     let context: ContextInterface = this.context;
 
     // Order matters
@@ -116,6 +118,9 @@ export default class Transformer implements TransformerInterface {
 
       // Add AMP script
       addAmpScript,
+
+      // Add canonical tag
+      addCanonical.bind(null, canonical),
     ];
 
     // Apply decorators

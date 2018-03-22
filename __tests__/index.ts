@@ -23,7 +23,7 @@ fs.readFile(filePath, async (err, content: Buffer): Promise<string> => {
   const ampli: Ampli = new Ampli({
     baseUrl: "https://drublic.de/",
   });
-  const amp: string = await ampli.transform(html);
+  const amp: string = await ampli.transform(html, "https://drublic.de/");
 
   fs.writeFileSync(outputPath, amp);
   log.info(`Generated File: ${outputPath}`);

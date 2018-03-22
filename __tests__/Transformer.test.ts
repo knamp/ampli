@@ -8,7 +8,7 @@ describe("Transformer", () => {
     const ampPath: string = path.resolve(__dirname, "./mock/index.amp.html");
     const html: string = fs.readFileSync(htmlPath).toString();
     const transformer: Transformer = new Transformer();
-    const amp: string = await transformer.transform(html);
+    const amp: string = await transformer.transform(html, "http://canoni.cal/");
 
     const ampExpected: string = fs.readFileSync(ampPath).toString();
 
