@@ -1,9 +1,9 @@
 import ContextInterface from "../interfaces/ContextInterface";
 import OptionsInterface from "../interfaces/OptionsInterface";
 
-import ConvertStyles from "../ConverStyles";
 import strip from "../strip";
 import { createElement } from "../utils/";
+import ConvertStyles from "../workers/ConverStyles";
 
 export default async (
   context: ContextInterface,

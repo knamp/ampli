@@ -33,6 +33,7 @@ log.info(amp)
 * `logger?: LoggerInterface`, use this object as logger instance, default [log](https://www.npmjs.com/package/log)
 * `useStaticCss?: boolean`, remove CSS that is not used, default: `false`
 * `additionalTags?: string[]`, custom HTML-tags that should be left in code
+* `baseUrl?: string`, a static URL to prefix relative file paths with
 
 ## Constrains
 

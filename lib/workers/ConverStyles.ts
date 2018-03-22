@@ -2,14 +2,14 @@ import * as CleanCSS from "clean-css";
 import * as Css from "css";
 import StaticStyles, { Output as StaticStylesOutput } from "static-styles";
 
-import ContextInterface from "./interfaces/ContextInterface";
-import OptionsInterface from "./interfaces/OptionsInterface";
+import ContextInterface from "../interfaces/ContextInterface";
+import OptionsInterface from "../interfaces/OptionsInterface";
 
-import Logger from "./Logger";
+import Logger from "../Logger";
 import {
   getElementContent,
   loadFile,
-} from "./utils/";
+} from "../utils/";
 
 export default class ConvertStyles {
   private cleanCss: CleanCSS;
