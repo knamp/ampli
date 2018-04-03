@@ -5,7 +5,9 @@ export default (
   const attributes: NamedNodeMap = initialElement.attributes;
 
   Array.from(attributes).forEach((attribute) => {
-    element.setAttribute(attribute.nodeName, attribute.nodeValue || "");
+    if (element && element.setAttribute) {
+      element.setAttribute(attribute.nodeName, attribute.nodeValue || "");
+    }
   });
 
   return element;
