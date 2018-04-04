@@ -1,6 +1,6 @@
 {
   "name": "ampli",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "HTML to AMP converter",
   "main": "dist/index.js",
   "repository": "git@github.com:knamp/ampli.git",
