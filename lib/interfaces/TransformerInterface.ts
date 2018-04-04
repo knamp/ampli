@@ -10,5 +10,11 @@ export default interface TransformerInterface {
       options?: OptionsInterface,
     ) => ContextInterface | Promise<ContextInterface>
   >;
+  additionalDecoratorsBefore?: Array<
+    (
+      context: ContextInterface,
+      options?: OptionsInterface,
+    ) => ContextInterface | Promise<ContextInterface>
+  >;
   options?: OptionsInterface;
 }

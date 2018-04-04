@@ -20,9 +20,11 @@ const options: OptionsInterface | null = {
   //...
 }
 const additionalDecorators: Function[] | null = [(document: ContextInterface, options: OptionsInterface) => document]
+
+const additionalDecoratorsBefore: Function[] | null = [(document: ContextInterface, options: OptionsInterface) => document]
 const html: string = "" //...
 
-const ampli: Ampli = new Ampli(options, additionalDecorators)
+const ampli: Ampli = new Ampli(options, additionalDecorators, additionalDecoratorsBefore)
 const amp: string = await ampli.transform(html)
 
 log.info(amp)
@@ -49,6 +51,5 @@ You must provide fully qualified URLs for images, stylesheets.
 ## License
 
 This project is under MIT license.
-
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fknamp%2Fampli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fknamp%2Fampli?ref=badge_large)

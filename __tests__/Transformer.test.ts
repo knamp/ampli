@@ -32,4 +32,20 @@ describe("Transformer", () => {
     expect(amp.trim()).toEqual(ampExpected.trim());
   });
 
+  it("initializes with addtional decorators that run before", async () => {
+    const ampPath: string = path.resolve(__dirname, "./mock/before.amp.html");
+    const ampExpected: string = fs.readFileSync(ampPath).toString();
+
+    const transformer: Transformer = new Transformer({}, undefined, [
+      (context) => {
+        context.document.querySelector("style").remove();
+
+        return context;
+      },
+    ]);
+    const amp: string = await transformer.transform(html, "http://canoni.cal/");
+
+    expect(amp.trim()).toEqual(ampExpected.trim());
+  });
+
 });

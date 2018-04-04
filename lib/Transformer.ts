@@ -39,6 +39,12 @@ export default class Transformer implements TransformerInterface {
         options?: OptionsInterface,
       ) => ContextInterface | Promise<ContextInterface>
     >,
+    public additionalDecoratorsBefore?: Array<
+      (
+        context: ContextInterface,
+        options?: OptionsInterface,
+      ) => ContextInterface | Promise<ContextInterface>
+      >,
   ) {
     if (options && options.logger) {
       setLogger(options.logger);
@@ -99,8 +105,6 @@ export default class Transformer implements TransformerInterface {
 
         return context;
       },
-
-      // @TODO Include canonical link
     ];
 
     const decorateAtTheEnd: Array<
@@ -122,6 +126,13 @@ export default class Transformer implements TransformerInterface {
       // Add canonical tag
       addCanonical.bind(null, canonical),
     ];
+
+    // Additional decorators before
+    if (this.additionalDecoratorsBefore && this.additionalDecoratorsBefore.constructor === Array) {
+      for (const decorator of this.additionalDecoratorsBefore) {
+        context = await decorator(context, this.options);
+      }
+    }
 
     // Apply decorators
     for (const decorator of decorators) {
