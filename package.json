@@ -15,6 +15,7 @@
     "ts:lint": "tslint -c tslint.json '**/*.ts'",
     "ts:build": "rm -rf dist/ && tsc -p tsconfig.json",
     "ts:watch": "yarn ts:build --watch && yarn copy:boilerplate",
+    "test": "yarn ts:test",
     "copy:boilerplate": "cp -r ./boilerplate dist/",
     "copy:teststyles": "cp ./__tests__/data/styles.css dist/__tests__/",
     "compile": "yarn copy:teststyles && node dist/__tests__/index.js",
