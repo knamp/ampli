@@ -185,4 +185,5 @@ export default [
 
   // Amp specific tags:
   "amp-img", // Replaces img
+  "amp-iframe", // Replaces iframes
 ];
