@@ -1,4 +1,5 @@
 {
+  "extends": "micro-tools",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
