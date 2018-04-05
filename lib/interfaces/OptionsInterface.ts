@@ -11,4 +11,9 @@ export default interface OptionsInterface {
     selector: string;
   }>;
   baseUrl?: string;
+  hooks?: {
+    styles?: {
+      parseRule?: (rule: any) => any
+    }
+  };
 }

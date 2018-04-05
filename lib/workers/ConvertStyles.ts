@@ -137,6 +137,14 @@ export default class ConvertStyles {
         return rule;
       }
 
+      // Call hook if it exisits
+      if (
+        this.options && this.options.hooks && this.options.hooks.styles &&
+        typeof this.options.hooks.styles.parseRule === "function"
+      ) {
+        rule = this.options.hooks.styles.parseRule(rule);
+      }
+
       if (rule.declarations) {
         rule.declarations = rule.declarations.map((declaration) => {
           if (declaration.value && declaration.value.indexOf("!important") > -1) {
