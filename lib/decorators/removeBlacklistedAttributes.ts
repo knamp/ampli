@@ -1,11 +1,19 @@
 import ContextInterface from "../interfaces/ContextInterface";
+import OptionsInterface from "../interfaces/OptionsInterface";
 
 import blacklistAttributes from "../blacklistAttributes";
 
 export default (
   element: HTMLElement,
+  options?: OptionsInterface,
 ) => {
-  blacklistAttributes.forEach((item) => {
+  let attributesToRemove = blacklistAttributes;
+
+  if (options && options.blacklistAttributes) {
+    attributesToRemove = attributesToRemove.concat(options.blacklistAttributes);
+  }
+
+  attributesToRemove.forEach((item) => {
     const matches = element.matches(item.selector);
 
     if (matches) {

@@ -6,5 +6,9 @@ export default interface OptionsInterface {
   useStaticCss?: boolean;
   additionalTags?: string[];
   additionalScripts?: AdditionalScriptsInterface[];
+  blacklistAttributes?: Array<{
+    attributes: string[];
+    selector: string;
+  }>;
   baseUrl?: string;
 }
