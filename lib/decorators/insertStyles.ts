@@ -3,7 +3,7 @@ import OptionsInterface from "../interfaces/OptionsInterface";
 
 import strip from "../strip";
 import { createElement } from "../utils/";
-import ConvertStyles from "../workers/ConverStyles";
+import ConvertStyles from "../workers/ConvertStyles";
 
 export default async (
   context: ContextInterface,
