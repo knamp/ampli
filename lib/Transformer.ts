@@ -100,7 +100,7 @@ export default class Transformer implements TransformerInterface {
       (): ContextInterface => {
         walkTheTree(context.document, (element: HTMLElement) => {
           keepWhitelistedTags(element, this.options);
-          removeBlacklistedAttributes(element);
+          removeBlacklistedAttributes(element, this.options);
         });
 
         return context;
