@@ -22,12 +22,18 @@ export default class ConvertStyles {
     private options?: OptionsInterface,
   ) {
     this.cleanCss = new CleanCSS({
+      inline: ["remote"],
       level: {
+        1: {
+          all: true,
+          roundingPrecision: "all=3",
+        },
         2: {
+          all: true,
           mergeAdjacentRules: false,
           mergeNonAdjacentRules: false,
           reduceNonAdjacentRules: false,
-        }
+        },
       },
     });
 
