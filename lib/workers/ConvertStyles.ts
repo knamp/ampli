@@ -118,6 +118,27 @@ export default class ConvertStyles {
     return `${path.dirname(fileurl)}/`;
   }
 
+  private isBiggerThan(rule: string, sizeToMatch: number): boolean {
+    const ruleSettings: string[] = rule.replace(
+      /.*?(max|min)-width:\s?(\d*)(em|rem|%|px|ch|ex|vw|vh|vmin|vmax)\)?\;?/g,
+      (match: string, minMax: string, size: string, unit: string) => {
+        return `${minMax} ${size} ${unit}`;
+      }
+    ).split(" ");
+
+    let sizeInPx: number = parseInt(ruleSettings[1], 10);
+
+    if (ruleSettings[2] === "em" || ruleSettings[2] === "rem") {
+      sizeInPx = sizeInPx * 16;
+    }
+
+    if (ruleSettings[0] === "min" && sizeInPx > sizeToMatch) {
+      return true;
+    }
+
+    return false;
+  }
+
   private filterRules(rules: any[]): any[] {
     return rules.map((rule) => {
 
@@ -127,7 +148,14 @@ export default class ConvertStyles {
         ["print"].indexOf(rule.media) > -1
       ) {
         rule.delete = true;
+        return rule;
+      }
 
+      // Media Queries for large screens if option is enabled
+      if (this.options && this.options.removeLargeScreenMediaqueries &&
+        rule.type === "media" && this.isBiggerThan(rule.media, 1024)
+      ) {
+        rule.delete = true;
         return rule;
       }
 

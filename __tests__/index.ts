@@ -22,6 +22,7 @@ fs.readFile(filePath, async (err, content: Buffer): Promise<string> => {
   const html = content.toString();
   const ampli: Ampli = new Ampli({
     baseUrl: "https://drublic.de/",
+    removeLargeScreenMediaqueries: true,
   });
   const amp: string = await ampli.transform(html, "https://drublic.de/");
 
