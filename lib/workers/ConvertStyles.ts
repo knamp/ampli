@@ -22,7 +22,17 @@ export default class ConvertStyles {
     private options?: OptionsInterface,
   ) {
     this.cleanCss = new CleanCSS({
-      level: 1,
+      level: {
+        1: {
+          mergeIntoShorthands: true,
+          mergeMedia: true,
+          removeEmpty: true,
+          removeDuplicateFontRules: true,
+          removeDuplicateMediaBlocks: true,
+          removeDuplicateRules: true,
+          removeUnusedAtRules: true,
+        }
+      },
     });
 
     this.transformResponse = this.transformResponse.bind(this);
