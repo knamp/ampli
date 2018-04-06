@@ -23,14 +23,10 @@ export default class ConvertStyles {
   ) {
     this.cleanCss = new CleanCSS({
       level: {
-        1: {
-          mergeIntoShorthands: true,
-          mergeMedia: true,
-          removeEmpty: true,
-          removeDuplicateFontRules: true,
-          removeDuplicateMediaBlocks: true,
-          removeDuplicateRules: true,
-          removeUnusedAtRules: true,
+        2: {
+          mergeAdjacentRules: false,
+          mergeNonAdjacentRules: false,
+          reduceNonAdjacentRules: false,
         }
       },
     });
