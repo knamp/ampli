@@ -52,4 +52,4 @@ You must provide fully qualified URLs for images, stylesheets.
 
 This project is under MIT license.
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fknamp%2Fampli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fknamp%2Fampli?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fknamp%2Fampli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fknamp%2Fampli?ref=badge_large) [![Greenkeeper badge](https://badges.greenkeeper.io/knamp/ampli.svg)](https://greenkeeper.io/)
