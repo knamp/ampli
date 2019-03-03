@@ -1,9 +1,7 @@
-import * as Log from "log";
-
 import LoggerInterface from "./interfaces/LoggerInterface";
 
 class Logger {
-  private logger: LoggerInterface = new Log("info");
+  private logger: LoggerInterface = console;
 
   public set(loggerInstance: LoggerInterface) {
     this.logger = loggerInstance;
