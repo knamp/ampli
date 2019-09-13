@@ -30,7 +30,7 @@
     "clean-css": "^4.1.11",
     "css": "^2.2.1",
     "html-minifier": "^3.5.12",
-    "is-absolute-url": "^2.1.0",
+    "is-absolute-url": "^3.0.2",
     "jsdom": "^13.2.0",
     "request": "^2.85.0",
     "request-image-size": "^2.1.0",
