@@ -34,7 +34,7 @@
     "jsdom": "^13.2.0",
     "request": "^2.85.0",
     "request-image-size": "^2.1.0",
-    "request-promise-native": "^1.0.5",
+    "request-promise-native": "1.0.7",
     "static-styles": "^0.3.1"
   },
   "devDependencies": {
