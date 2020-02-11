@@ -32,7 +32,7 @@
     "html-minifier": "^3.5.12",
     "is-absolute-url": "^2.1.0",
     "jsdom": "^13.2.0",
-    "request": "^2.85.0",
+    "request": "^2.88.2",
     "request-image-size": "^2.1.0",
     "request-promise-native": "^1.0.5",
     "static-styles": "^0.3.1"
